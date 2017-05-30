@@ -1,0 +1,1552 @@
+[
+  {
+    "idSeance": 4451503,
+    "idManif": 475291,
+    "titre": "LE VOLEUR",
+    "date": "2017-03-04 18:00:00",
+    "salle": {
+      "id": 1,
+      "code": "HL"
+    },
+    "tickets": {
+      "compte": 385,
+      "recette": 1386.5,
+      "tarifCat": {
+        "lpGratuit": 82,
+        "lpPayant": 28,
+        "gratuit": 19,
+        "plein": 141,
+        "reduit": 115,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 1,
+        "lpPayant": 13,
+        "gratuit": 2,
+        "plein": 44,
+        "reduit": 32,
+        "autres": 0
+      },
+      "nonScannesCompte": 92
+    }
+  },
+  {
+    "idSeance": 4451451,
+    "idManif": 475239,
+    "titre": "BARFLY",
+    "date": "2017-03-05 13:30:00",
+    "salle": {
+      "id": 1,
+      "code": "HL"
+    },
+    "tickets": {
+      "compte": 383,
+      "recette": 1283,
+      "tarifCat": {
+        "lpGratuit": 62,
+        "lpPayant": 36,
+        "gratuit": 26,
+        "plein": 92,
+        "reduit": 167,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 0,
+        "lpPayant": 16,
+        "gratuit": 3,
+        "plein": 18,
+        "reduit": 31,
+        "autres": 0
+      },
+      "nonScannesCompte": 68
+    }
+  },
+  {
+    "idSeance": 4451693,
+    "idManif": 475355,
+    "titre": "NUIT JOE DANTE",
+    "date": "2017-03-04 23:00:00",
+    "salle": {
+      "id": 1,
+      "code": "HL"
+    },
+    "tickets": {
+      "compte": 400,
+      "recette": 3399,
+      "tarifCat": {
+        "lpGratuit": 0,
+        "lpPayant": 92,
+        "gratuit": 34,
+        "plein": 131,
+        "reduit": 143,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 0,
+        "lpPayant": 5,
+        "gratuit": 0,
+        "plein": 31,
+        "reduit": 27,
+        "autres": 0
+      },
+      "nonScannesCompte": 63
+    }
+  },
+  {
+    "idSeance": 4451681,
+    "idManif": 475349,
+    "titre": "THE SECOND CIVIL WAR / MASTER CLASS JOE DANTE",
+    "date": "2017-03-04 14:00:00",
+    "salle": {
+      "id": 1,
+      "code": "HL"
+    },
+    "tickets": {
+      "compte": 409,
+      "recette": 3756,
+      "tarifCat": {
+        "lpGratuit": 0,
+        "lpPayant": 100,
+        "gratuit": 27,
+        "plein": 180,
+        "reduit": 102,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 0,
+        "lpPayant": 16,
+        "gratuit": 5,
+        "plein": 26,
+        "reduit": 15,
+        "autres": 0
+      },
+      "nonScannesCompte": 62
+    }
+  },
+  {
+    "idSeance": 4453361,
+    "idManif": 475479,
+    "titre": "TOUTE LA MEMOIRE DU MONDE - COLLOQUE : APRES-MIDI",
+    "date": "2017-03-01 14:30:00",
+    "salle": {
+      "id": 1,
+      "code": "HL"
+    },
+    "tickets": {
+      "compte": 237,
+      "recette": 141,
+      "tarifCat": {
+        "lpGratuit": 31,
+        "lpPayant": 2,
+        "gratuit": 165,
+        "plein": 22,
+        "reduit": 17,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 0,
+        "lpPayant": 1,
+        "gratuit": 52,
+        "plein": 3,
+        "reduit": 2,
+        "autres": 0
+      },
+      "nonScannesCompte": 58
+    }
+  },
+  {
+    "idSeance": 4451447,
+    "idManif": 475235,
+    "titre": "LE SOUFFLE AU COEUR",
+    "date": "2017-03-03 21:30:00",
+    "salle": {
+      "id": 1,
+      "code": "HL"
+    },
+    "tickets": {
+      "compte": 339,
+      "recette": 1135,
+      "tarifCat": {
+        "lpGratuit": 67,
+        "lpPayant": 25,
+        "gratuit": 15,
+        "plein": 80,
+        "reduit": 152,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 0,
+        "lpPayant": 7,
+        "gratuit": 6,
+        "plein": 14,
+        "reduit": 29,
+        "autres": 0
+      },
+      "nonScannesCompte": 56
+    }
+  },
+  {
+    "idSeance": 4453359,
+    "idManif": 475475,
+    "titre": "TOUTE LA MEMOIRE DU MONDE - COLLOQUE : MATINEE",
+    "date": "2017-03-01 09:30:00",
+    "salle": {
+      "id": 1,
+      "code": "HL"
+    },
+    "tickets": {
+      "compte": 320,
+      "recette": 298,
+      "tarifCat": {
+        "lpGratuit": 26,
+        "lpPayant": 5,
+        "gratuit": 204,
+        "plein": 38,
+        "reduit": 47,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 1,
+        "lpPayant": 2,
+        "gratuit": 29,
+        "plein": 8,
+        "reduit": 12,
+        "autres": 0
+      },
+      "nonScannesCompte": 52
+    }
+  },
+  {
+    "idSeance": 4451707,
+    "idManif": 475363,
+    "titre": "RUSHMORE / MASTER CLASS WES ANDERSON",
+    "date": "2017-03-03 18:00:00",
+    "salle": {
+      "id": 1,
+      "code": "HL"
+    },
+    "tickets": {
+      "compte": 406,
+      "recette": 2579,
+      "tarifCat": {
+        "lpGratuit": 0,
+        "lpPayant": 44,
+        "gratuit": 122,
+        "plein": 79,
+        "reduit": 161,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 0,
+        "lpPayant": 3,
+        "gratuit": 25,
+        "plein": 6,
+        "reduit": 8,
+        "autres": 0
+      },
+      "nonScannesCompte": 42
+    }
+  },
+  {
+    "idSeance": 4451513,
+    "idManif": 475301,
+    "titre": "CINE-CONCERT : FAUST",
+    "date": "2017-03-05 20:00:00",
+    "salle": {
+      "id": 1,
+      "code": "HL"
+    },
+    "tickets": {
+      "compte": 415,
+      "recette": 3482,
+      "tarifCat": {
+        "lpGratuit": 0,
+        "lpPayant": 102,
+        "gratuit": 53,
+        "plein": 158,
+        "reduit": 102,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 0,
+        "lpPayant": 6,
+        "gratuit": 4,
+        "plein": 15,
+        "reduit": 13,
+        "autres": 0
+      },
+      "nonScannesCompte": 38
+    }
+  },
+  {
+    "idSeance": 4451455,
+    "idManif": 475243,
+    "titre": "L'AVENTURE INTERIEURE",
+    "date": "2017-03-01 20:00:00",
+    "salle": {
+      "id": 1,
+      "code": "HL"
+    },
+    "tickets": {
+      "compte": 357,
+      "recette": 442.5,
+      "tarifCat": {
+        "lpGratuit": 56,
+        "lpPayant": 19,
+        "gratuit": 198,
+        "plein": 35,
+        "reduit": 49,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 1,
+        "lpPayant": 6,
+        "gratuit": 9,
+        "plein": 6,
+        "reduit": 15,
+        "autres": 0
+      },
+      "nonScannesCompte": 37
+    }
+  },
+  {
+    "idSeance": 4451461,
+    "idManif": 475249,
+    "titre": "GREMLINS 2 : LA NOUVELLE GENERATION",
+    "date": "2017-03-05 14:00:00",
+    "salle": {
+      "id": 2,
+      "code": "GF"
+    },
+    "tickets": {
+      "compte": 172,
+      "recette": 550,
+      "tarifCat": {
+        "lpGratuit": 28,
+        "lpPayant": 21,
+        "gratuit": 16,
+        "plein": 40,
+        "reduit": 67,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 1,
+        "lpPayant": 9,
+        "gratuit": 0,
+        "plein": 3,
+        "reduit": 19,
+        "autres": 0
+      },
+      "nonScannesCompte": 32
+    }
+  },
+  {
+    "idSeance": 4451509,
+    "idManif": 475297,
+    "titre": "ZOMBIE",
+    "date": "2017-03-05 16:00:00",
+    "salle": {
+      "id": 1,
+      "code": "HL"
+    },
+    "tickets": {
+      "compte": 257,
+      "recette": 688.5,
+      "tarifCat": {
+        "lpGratuit": 62,
+        "lpPayant": 24,
+        "gratuit": 36,
+        "plein": 57,
+        "reduit": 78,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 0,
+        "lpPayant": 5,
+        "gratuit": 6,
+        "plein": 7,
+        "reduit": 13,
+        "autres": 0
+      },
+      "nonScannesCompte": 31
+    }
+  },
+  {
+    "idSeance": 4451505,
+    "idManif": 475293,
+    "titre": "TRISTANA",
+    "date": "2017-03-04 20:30:00",
+    "salle": {
+      "id": 1,
+      "code": "HL"
+    },
+    "tickets": {
+      "compte": 252,
+      "recette": 664,
+      "tarifCat": {
+        "lpGratuit": 80,
+        "lpPayant": 27,
+        "gratuit": 21,
+        "plein": 64,
+        "reduit": 60,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 0,
+        "lpPayant": 8,
+        "gratuit": 5,
+        "plein": 5,
+        "reduit": 11,
+        "autres": 0
+      },
+      "nonScannesCompte": 29
+    }
+  },
+  {
+    "idSeance": 4494853,
+    "idManif": 478209,
+    "titre": "L'AVENTURE INTERIEURE",
+    "date": "2017-03-01 20:30:00",
+    "salle": {
+      "id": 3,
+      "code": "JE"
+    },
+    "tickets": {
+      "compte": 51,
+      "recette": 178,
+      "tarifCat": {
+        "lpGratuit": 6,
+        "lpPayant": 3,
+        "gratuit": 6,
+        "plein": 12,
+        "reduit": 24,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 3,
+        "lpPayant": 2,
+        "gratuit": 2,
+        "plein": 8,
+        "reduit": 7,
+        "autres": 0
+      },
+      "nonScannesCompte": 22
+    }
+  },
+  {
+    "idSeance": 4451453,
+    "idManif": 475241,
+    "titre": "DAISY MILLER",
+    "date": "2017-03-05 16:30:00",
+    "salle": {
+      "id": 2,
+      "code": "GF"
+    },
+    "tickets": {
+      "compte": 186,
+      "recette": 356.5,
+      "tarifCat": {
+        "lpGratuit": 71,
+        "lpPayant": 25,
+        "gratuit": 19,
+        "plein": 19,
+        "reduit": 52,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 1,
+        "lpPayant": 5,
+        "gratuit": 1,
+        "plein": 3,
+        "reduit": 12,
+        "autres": 0
+      },
+      "nonScannesCompte": 22
+    }
+  },
+  {
+    "idSeance": 4451501,
+    "idManif": 475289,
+    "titre": "LA VENGEANCE AUX DEUX VISAGES",
+    "date": "2017-03-04 14:30:00",
+    "salle": {
+      "id": 2,
+      "code": "GF"
+    },
+    "tickets": {
+      "compte": 181,
+      "recette": 491.5,
+      "tarifCat": {
+        "lpGratuit": 61,
+        "lpPayant": 12,
+        "gratuit": 14,
+        "plein": 49,
+        "reduit": 45,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 0,
+        "lpPayant": 2,
+        "gratuit": 2,
+        "plein": 8,
+        "reduit": 7,
+        "autres": 0
+      },
+      "nonScannesCompte": 19
+    }
+  },
+  {
+    "idSeance": 4453365,
+    "idManif": 475481,
+    "titre": "RENCONTRE : QUEL AVENIR POUR LA PELLICULE ?",
+    "date": "2017-03-02 14:30:00",
+    "salle": {
+      "id": 2,
+      "code": "GF"
+    },
+    "tickets": {
+      "compte": 167,
+      "recette": 196,
+      "tarifCat": {
+        "lpGratuit": 24,
+        "lpPayant": 4,
+        "gratuit": 85,
+        "plein": 30,
+        "reduit": 24,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 2,
+        "lpPayant": 1,
+        "gratuit": 6,
+        "plein": 5,
+        "reduit": 3,
+        "autres": 0
+      },
+      "nonScannesCompte": 17
+    }
+  },
+  {
+    "idSeance": 4451487,
+    "idManif": 475275,
+    "titre": "CINE-CONCERT : LE LYS BRISE",
+    "date": "2017-03-02 20:00:00",
+    "salle": {
+      "id": 1,
+      "code": "HL"
+    },
+    "tickets": {
+      "compte": 326,
+      "recette": 1750,
+      "tarifCat": {
+        "lpGratuit": 0,
+        "lpPayant": 110,
+        "gratuit": 121,
+        "plein": 66,
+        "reduit": 29,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 0,
+        "lpPayant": 3,
+        "gratuit": 5,
+        "plein": 7,
+        "reduit": 2,
+        "autres": 0
+      },
+      "nonScannesCompte": 17
+    }
+  },
+  {
+    "idSeance": 4451393,
+    "idManif": 475213,
+    "titre": "DES MONSTRES ATTAQUENT LA VILLE",
+    "date": "2017-03-03 16:00:00",
+    "salle": {
+      "id": 1,
+      "code": "HL"
+    },
+    "tickets": {
+      "compte": 188,
+      "recette": 109,
+      "tarifCat": {
+        "lpGratuit": 53,
+        "lpPayant": 6,
+        "gratuit": 109,
+        "plein": 9,
+        "reduit": 11,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 0,
+        "lpPayant": 1,
+        "gratuit": 15,
+        "plein": 0,
+        "reduit": 1,
+        "autres": 0
+      },
+      "nonScannesCompte": 17
+    }
+  },
+  {
+    "idSeance": 4451459,
+    "idManif": 475247,
+    "titre": "HURLEMENTS",
+    "date": "2017-03-02 16:15:00",
+    "salle": {
+      "id": 1,
+      "code": "HL"
+    },
+    "tickets": {
+      "compte": 257,
+      "recette": 478.5,
+      "tarifCat": {
+        "lpGratuit": 54,
+        "lpPayant": 23,
+        "gratuit": 93,
+        "plein": 43,
+        "reduit": 44,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 0,
+        "lpPayant": 5,
+        "gratuit": 2,
+        "plein": 6,
+        "reduit": 3,
+        "autres": 0
+      },
+      "nonScannesCompte": 16
+    }
+  },
+  {
+    "idSeance": 4453329,
+    "idManif": 475449,
+    "titre": "FILMS DE BORDEL DES ANNEES 20",
+    "date": "2017-03-04 00:05:00",
+    "salle": {
+      "id": 1,
+      "code": "HL"
+    },
+    "tickets": {
+      "compte": 155,
+      "recette": 274,
+      "tarifCat": {
+        "lpGratuit": 69,
+        "lpPayant": 11,
+        "gratuit": 23,
+        "plein": 22,
+        "reduit": 30,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 2,
+        "lpPayant": 2,
+        "gratuit": 3,
+        "plein": 3,
+        "reduit": 5,
+        "autres": 0
+      },
+      "nonScannesCompte": 15
+    }
+  },
+  {
+    "idSeance": 4451511,
+    "idManif": 475299,
+    "titre": "PHASE IV",
+    "date": "2017-03-05 19:00:00",
+    "salle": {
+      "id": 2,
+      "code": "GF"
+    },
+    "tickets": {
+      "compte": 186,
+      "recette": 410.5,
+      "tarifCat": {
+        "lpGratuit": 71,
+        "lpPayant": 10,
+        "gratuit": 28,
+        "plein": 43,
+        "reduit": 34,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 3,
+        "lpPayant": 3,
+        "gratuit": 1,
+        "plein": 2,
+        "reduit": 6,
+        "autres": 0
+      },
+      "nonScannesCompte": 15
+    }
+  },
+  {
+    "idSeance": 4451443,
+    "idManif": 475231,
+    "titre": "L'ASSASSIN S'ETAIT TROMPE",
+    "date": "2017-03-04 19:00:00",
+    "salle": {
+      "id": 2,
+      "code": "GF"
+    },
+    "tickets": {
+      "compte": 193,
+      "recette": 291.5,
+      "tarifCat": {
+        "lpGratuit": 113,
+        "lpPayant": 4,
+        "gratuit": 26,
+        "plein": 35,
+        "reduit": 15,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 10,
+        "lpPayant": 2,
+        "gratuit": 1,
+        "plein": 0,
+        "reduit": 1,
+        "autres": 0
+      },
+      "nonScannesCompte": 14
+    }
+  },
+  {
+    "idSeance": 4451499,
+    "idManif": 475287,
+    "titre": "LE GRAND SILENCE",
+    "date": "2017-03-03 21:00:00",
+    "salle": {
+      "id": 2,
+      "code": "GF"
+    },
+    "tickets": {
+      "compte": 166,
+      "recette": 376,
+      "tarifCat": {
+        "lpGratuit": 57,
+        "lpPayant": 15,
+        "gratuit": 26,
+        "plein": 34,
+        "reduit": 34,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 1,
+        "lpPayant": 1,
+        "gratuit": 2,
+        "plein": 3,
+        "reduit": 6,
+        "autres": 0
+      },
+      "nonScannesCompte": 13
+    }
+  },
+  {
+    "idSeance": 4451493,
+    "idManif": 475281,
+    "titre": "LA DAME DU VENDREDI",
+    "date": "2017-03-03 14:00:00",
+    "salle": {
+      "id": 1,
+      "code": "HL"
+    },
+    "tickets": {
+      "compte": 195,
+      "recette": 153,
+      "tarifCat": {
+        "lpGratuit": 66,
+        "lpPayant": 5,
+        "gratuit": 99,
+        "plein": 19,
+        "reduit": 6,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 1,
+        "lpPayant": 0,
+        "gratuit": 8,
+        "plein": 1,
+        "reduit": 3,
+        "autres": 0
+      },
+      "nonScannesCompte": 13
+    }
+  },
+  {
+    "idSeance": 4451463,
+    "idManif": 475251,
+    "titre": "A L'EST D'EDEN",
+    "date": "2017-03-01 14:00:00",
+    "salle": {
+      "id": 2,
+      "code": "GF"
+    },
+    "tickets": {
+      "compte": 171,
+      "recette": 154.5,
+      "tarifCat": {
+        "lpGratuit": 69,
+        "lpPayant": 7,
+        "gratuit": 67,
+        "plein": 14,
+        "reduit": 14,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 3,
+        "lpPayant": 1,
+        "gratuit": 6,
+        "plein": 0,
+        "reduit": 3,
+        "autres": 0
+      },
+      "nonScannesCompte": 13
+    }
+  },
+  {
+    "idSeance": 4451457,
+    "idManif": 475245,
+    "titre": "GREMLINS",
+    "date": "2017-03-02 14:00:00",
+    "salle": {
+      "id": 1,
+      "code": "HL"
+    },
+    "tickets": {
+      "compte": 161,
+      "recette": 149,
+      "tarifCat": {
+        "lpGratuit": 42,
+        "lpPayant": 3,
+        "gratuit": 87,
+        "plein": 12,
+        "reduit": 17,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 1,
+        "lpPayant": 0,
+        "gratuit": 5,
+        "plein": 2,
+        "reduit": 5,
+        "autres": 0
+      },
+      "nonScannesCompte": 13
+    }
+  },
+  {
+    "idSeance": 4453339,
+    "idManif": 475457,
+    "titre": "MAGIRAMA - J'ACCUSE",
+    "date": "2017-03-01 19:00:00",
+    "salle": {
+      "id": 2,
+      "code": "GF"
+    },
+    "tickets": {
+      "compte": 163,
+      "recette": 182,
+      "tarifCat": {
+        "lpGratuit": 60,
+        "lpPayant": 15,
+        "gratuit": 55,
+        "plein": 14,
+        "reduit": 19,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 1,
+        "lpPayant": 3,
+        "gratuit": 2,
+        "plein": 4,
+        "reduit": 2,
+        "autres": 0
+      },
+      "nonScannesCompte": 12
+    }
+  },
+  {
+    "idSeance": 4451491,
+    "idManif": 475279,
+    "titre": "LA BANDE DES QUATRE",
+    "date": "2017-03-02 21:00:00",
+    "salle": {
+      "id": 2,
+      "code": "GF"
+    },
+    "tickets": {
+      "compte": 65,
+      "recette": 152,
+      "tarifCat": {
+        "lpGratuit": 20,
+        "lpPayant": 6,
+        "gratuit": 10,
+        "plein": 12,
+        "reduit": 17,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 2,
+        "lpPayant": 2,
+        "gratuit": 5,
+        "plein": 0,
+        "reduit": 1,
+        "autres": 0
+      },
+      "nonScannesCompte": 10
+    }
+  },
+  {
+    "idSeance": 4451481,
+    "idManif": 475269,
+    "titre": "BREAK-UP, EROTISME ET BALLONS ROUGES",
+    "date": "2017-03-01 20:30:00",
+    "salle": {
+      "id": 2,
+      "code": "GF"
+    },
+    "tickets": {
+      "compte": 148,
+      "recette": 206.5,
+      "tarifCat": {
+        "lpGratuit": 78,
+        "lpPayant": 13,
+        "gratuit": 23,
+        "plein": 23,
+        "reduit": 11,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 3,
+        "lpPayant": 3,
+        "gratuit": 1,
+        "plein": 1,
+        "reduit": 0,
+        "autres": 0
+      },
+      "nonScannesCompte": 8
+    }
+  },
+  {
+    "idSeance": 4451445,
+    "idManif": 475233,
+    "titre": "LE MYSTERE DE LA VILLA BLANCHE",
+    "date": "2017-03-04 21:00:00",
+    "salle": {
+      "id": 2,
+      "code": "GF"
+    },
+    "tickets": {
+      "compte": 147,
+      "recette": 129,
+      "tarifCat": {
+        "lpGratuit": 96,
+        "lpPayant": 4,
+        "gratuit": 22,
+        "plein": 10,
+        "reduit": 15,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 5,
+        "lpPayant": 1,
+        "gratuit": 2,
+        "plein": 0,
+        "reduit": 0,
+        "autres": 0
+      },
+      "nonScannesCompte": 8
+    }
+  },
+  {
+    "idSeance": 4453321,
+    "idManif": 475441,
+    "titre": "CINEMA DES PREMIERS TEMPS",
+    "date": "2017-03-04 19:30:00",
+    "salle": {
+      "id": 3,
+      "code": "JE"
+    },
+    "tickets": {
+      "compte": 91,
+      "recette": 147,
+      "tarifCat": {
+        "lpGratuit": 29,
+        "lpPayant": 5,
+        "gratuit": 30,
+        "plein": 14,
+        "reduit": 13,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 0,
+        "lpPayant": 1,
+        "gratuit": 2,
+        "plein": 0,
+        "reduit": 4,
+        "autres": 0
+      },
+      "nonScannesCompte": 7
+    }
+  },
+  {
+    "idSeance": 4451477,
+    "idManif": 475265,
+    "titre": "KATKA, POMME REINETTE",
+    "date": "2017-03-04 15:00:00",
+    "salle": {
+      "id": 3,
+      "code": "JE"
+    },
+    "tickets": {
+      "compte": 83,
+      "recette": 60.5,
+      "tarifCat": {
+        "lpGratuit": 41,
+        "lpPayant": 7,
+        "gratuit": 25,
+        "plein": 5,
+        "reduit": 5,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 1,
+        "lpPayant": 1,
+        "gratuit": 5,
+        "plein": 0,
+        "reduit": 0,
+        "autres": 0
+      },
+      "nonScannesCompte": 7
+    }
+  },
+  {
+    "idSeance": 4451475,
+    "idManif": 475263,
+    "titre": "LE CIRQUE",
+    "date": "2017-03-03 18:30:00",
+    "salle": {
+      "id": 3,
+      "code": "JE"
+    },
+    "tickets": {
+      "compte": 87,
+      "recette": 64,
+      "tarifCat": {
+        "lpGratuit": 54,
+        "lpPayant": 4,
+        "gratuit": 19,
+        "plein": 8,
+        "reduit": 2,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 4,
+        "lpPayant": 0,
+        "gratuit": 1,
+        "plein": 2,
+        "reduit": 0,
+        "autres": 0
+      },
+      "nonScannesCompte": 7
+    }
+  },
+  {
+    "idSeance": 4451485,
+    "idManif": 475273,
+    "titre": "LE FILS DU CHEIK",
+    "date": "2017-03-02 18:00:00",
+    "salle": {
+      "id": 3,
+      "code": "JE"
+    },
+    "tickets": {
+      "compte": 88,
+      "recette": 105,
+      "tarifCat": {
+        "lpGratuit": 42,
+        "lpPayant": 3,
+        "gratuit": 25,
+        "plein": 12,
+        "reduit": 6,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 0,
+        "lpPayant": 0,
+        "gratuit": 6,
+        "plein": 0,
+        "reduit": 0,
+        "autres": 0
+      },
+      "nonScannesCompte": 6
+    }
+  },
+  {
+    "idSeance": 4451465,
+    "idManif": 475253,
+    "titre": "PLANETE INTERDITE",
+    "date": "2017-03-01 16:30:00",
+    "salle": {
+      "id": 2,
+      "code": "GF"
+    },
+    "tickets": {
+      "compte": 121,
+      "recette": 164,
+      "tarifCat": {
+        "lpGratuit": 53,
+        "lpPayant": 3,
+        "gratuit": 33,
+        "plein": 14,
+        "reduit": 18,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 2,
+        "lpPayant": 1,
+        "gratuit": 1,
+        "plein": 1,
+        "reduit": 1,
+        "autres": 0
+      },
+      "nonScannesCompte": 6
+    }
+  },
+  {
+    "idSeance": 4453367,
+    "idManif": 475483,
+    "titre": "CONFERENCE \"1927-2017 : ANNIVERSAIRE DU CHANTEUR DE JAZZ...\"",
+    "date": "2017-03-03 14:30:00",
+    "salle": {
+      "id": 2,
+      "code": "GF"
+    },
+    "tickets": {
+      "compte": 95,
+      "recette": 60,
+      "tarifCat": {
+        "lpGratuit": 24,
+        "lpPayant": 1,
+        "gratuit": 54,
+        "plein": 11,
+        "reduit": 5,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 1,
+        "lpPayant": 0,
+        "gratuit": 4,
+        "plein": 0,
+        "reduit": 0,
+        "autres": 0
+      },
+      "nonScannesCompte": 5
+    }
+  },
+  {
+    "idSeance": 4451495,
+    "idManif": 475283,
+    "titre": "KING OF JAZZ",
+    "date": "2017-03-03 18:45:00",
+    "salle": {
+      "id": 2,
+      "code": "GF"
+    },
+    "tickets": {
+      "compte": 102,
+      "recette": 111.5,
+      "tarifCat": {
+        "lpGratuit": 55,
+        "lpPayant": 5,
+        "gratuit": 21,
+        "plein": 9,
+        "reduit": 12,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 0,
+        "lpPayant": 1,
+        "gratuit": 3,
+        "plein": 0,
+        "reduit": 1,
+        "autres": 0
+      },
+      "nonScannesCompte": 5
+    }
+  },
+  {
+    "idSeance": 4451489,
+    "idManif": 475277,
+    "titre": "LES ARPENTEURS",
+    "date": "2017-03-02 20:30:00",
+    "salle": {
+      "id": 3,
+      "code": "JE"
+    },
+    "tickets": {
+      "compte": 71,
+      "recette": 110,
+      "tarifCat": {
+        "lpGratuit": 42,
+        "lpPayant": 2,
+        "gratuit": 10,
+        "plein": 16,
+        "reduit": 1,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 1,
+        "lpPayant": 0,
+        "gratuit": 4,
+        "plein": 0,
+        "reduit": 0,
+        "autres": 0
+      },
+      "nonScannesCompte": 5
+    }
+  },
+  {
+    "idSeance": 4451467,
+    "idManif": 475255,
+    "titre": "BONJOUR TRISTESSE",
+    "date": "2017-03-02 16:45:00",
+    "salle": {
+      "id": 2,
+      "code": "GF"
+    },
+    "tickets": {
+      "compte": 94,
+      "recette": 165.5,
+      "tarifCat": {
+        "lpGratuit": 40,
+        "lpPayant": 4,
+        "gratuit": 20,
+        "plein": 16,
+        "reduit": 14,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 0,
+        "lpPayant": 1,
+        "gratuit": 0,
+        "plein": 1,
+        "reduit": 3,
+        "autres": 0
+      },
+      "nonScannesCompte": 5
+    }
+  },
+  {
+    "idSeance": 4451449,
+    "idManif": 475237,
+    "titre": "LES DERNIERES VACANCES",
+    "date": "2017-03-04 21:30:00",
+    "salle": {
+      "id": 3,
+      "code": "JE"
+    },
+    "tickets": {
+      "compte": 57,
+      "recette": 109,
+      "tarifCat": {
+        "lpGratuit": 22,
+        "lpPayant": 2,
+        "gratuit": 15,
+        "plein": 14,
+        "reduit": 4,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 1,
+        "lpPayant": 1,
+        "gratuit": 0,
+        "plein": 2,
+        "reduit": 1,
+        "autres": 0
+      },
+      "nonScannesCompte": 5
+    }
+  },
+  {
+    "idSeance": 4453323,
+    "idManif": 475443,
+    "titre": "DES JEUNES FEMMES DISPARAISSENT / LA CROISEE DES CHEMINS",
+    "date": "2017-03-02 18:45:00",
+    "salle": {
+      "id": 2,
+      "code": "GF"
+    },
+    "tickets": {
+      "compte": 112,
+      "recette": 141.5,
+      "tarifCat": {
+        "lpGratuit": 59,
+        "lpPayant": 8,
+        "gratuit": 21,
+        "plein": 15,
+        "reduit": 9,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 2,
+        "lpPayant": 0,
+        "gratuit": 1,
+        "plein": 0,
+        "reduit": 0,
+        "autres": 0
+      },
+      "nonScannesCompte": 3
+    }
+  },
+  {
+    "idSeance": 4451507,
+    "idManif": 475295,
+    "titre": "FORCE ET BEAUTE",
+    "date": "2017-03-05 15:00:00",
+    "salle": {
+      "id": 3,
+      "code": "JE"
+    },
+    "tickets": {
+      "compte": 46,
+      "recette": 105.5,
+      "tarifCat": {
+        "lpGratuit": 22,
+        "lpPayant": 1,
+        "gratuit": 5,
+        "plein": 13,
+        "reduit": 5,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 0,
+        "lpPayant": 1,
+        "gratuit": 1,
+        "plein": 1,
+        "reduit": 0,
+        "autres": 0
+      },
+      "nonScannesCompte": 3
+    }
+  },
+  {
+    "idSeance": 4451479,
+    "idManif": 475267,
+    "titre": "SANS DOT",
+    "date": "2017-03-04 17:30:00",
+    "salle": {
+      "id": 3,
+      "code": "JE"
+    },
+    "tickets": {
+      "compte": 90,
+      "recette": 75,
+      "tarifCat": {
+        "lpGratuit": 50,
+        "lpPayant": 8,
+        "gratuit": 19,
+        "plein": 6,
+        "reduit": 7,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 0,
+        "lpPayant": 3,
+        "gratuit": 0,
+        "plein": 0,
+        "reduit": 0,
+        "autres": 0
+      },
+      "nonScannesCompte": 3
+    }
+  },
+  {
+    "idSeance": 4451829,
+    "idManif": 475419,
+    "titre": "AMERICAN DREAMS / FROM THE NOTEBOOK OF...",
+    "date": "2017-03-05 17:30:00",
+    "salle": {
+      "id": 3,
+      "code": "JE"
+    },
+    "tickets": {
+      "compte": 92,
+      "recette": 157,
+      "tarifCat": {
+        "lpGratuit": 40,
+        "lpPayant": 3,
+        "gratuit": 23,
+        "plein": 20,
+        "reduit": 6,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 1,
+        "lpPayant": 0,
+        "gratuit": 0,
+        "plein": 0,
+        "reduit": 1,
+        "autres": 0
+      },
+      "nonScannesCompte": 2
+    }
+  },
+  {
+    "idSeance": 4451497,
+    "idManif": 475285,
+    "titre": "KEAN OU DESORDRE ET GENIE",
+    "date": "2017-03-03 20:30:00",
+    "salle": {
+      "id": 3,
+      "code": "JE"
+    },
+    "tickets": {
+      "compte": 74,
+      "recette": 118.5,
+      "tarifCat": {
+        "lpGratuit": 37,
+        "lpPayant": 6,
+        "gratuit": 11,
+        "plein": 13,
+        "reduit": 7,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 1,
+        "lpPayant": 0,
+        "gratuit": 0,
+        "plein": 1,
+        "reduit": 0,
+        "autres": 0
+      },
+      "nonScannesCompte": 2
+    }
+  },
+  {
+    "idSeance": 4451483,
+    "idManif": 475271,
+    "titre": "DAUGHTERS OF THE DUST",
+    "date": "2017-03-02 15:00:00",
+    "salle": {
+      "id": 3,
+      "code": "JE"
+    },
+    "tickets": {
+      "compte": 48,
+      "recette": 49.5,
+      "tarifCat": {
+        "lpGratuit": 26,
+        "lpPayant": 0,
+        "gratuit": 14,
+        "plein": 7,
+        "reduit": 1,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 0,
+        "lpPayant": 0,
+        "gratuit": 0,
+        "plein": 1,
+        "reduit": 0,
+        "autres": 0
+      },
+      "nonScannesCompte": 1
+    }
+  },
+  {
+    "idSeance": 4451473,
+    "idManif": 475261,
+    "titre": "LA CARTE DU PARTI",
+    "date": "2017-03-03 15:00:00",
+    "salle": {
+      "id": 3,
+      "code": "JE"
+    },
+    "tickets": {
+      "compte": 80,
+      "recette": 50.5,
+      "tarifCat": {
+        "lpGratuit": 46,
+        "lpPayant": 6,
+        "gratuit": 20,
+        "plein": 5,
+        "reduit": 3,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 0,
+        "lpPayant": 1,
+        "gratuit": 0,
+        "plein": 0,
+        "reduit": 0,
+        "autres": 0
+      },
+      "nonScannesCompte": 1
+    }
+  },
+  {
+    "idSeance": 4451471,
+    "idManif": 475259,
+    "titre": "LE VILLAGE DU PECHE (LES JOYEUSES COMMERES DE RIAZAN)",
+    "date": "2017-03-01 18:00:00",
+    "salle": {
+      "id": 3,
+      "code": "JE"
+    },
+    "tickets": {
+      "compte": 55,
+      "recette": 19.5,
+      "tarifCat": {
+        "lpGratuit": 36,
+        "lpPayant": 0,
+        "gratuit": 16,
+        "plein": 3,
+        "reduit": 0,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 1,
+        "lpPayant": 0,
+        "gratuit": 0,
+        "plein": 0,
+        "reduit": 0,
+        "autres": 0
+      },
+      "nonScannesCompte": 1
+    }
+  },
+  {
+    "idSeance": 4451469,
+    "idManif": 475257,
+    "titre": "LES AVIATEURS",
+    "date": "2017-03-01 15:00:00",
+    "salle": {
+      "id": 3,
+      "code": "JE"
+    },
+    "tickets": {
+      "compte": 85,
+      "recette": 22,
+      "tarifCat": {
+        "lpGratuit": 43,
+        "lpPayant": 1,
+        "gratuit": 37,
+        "plein": 2,
+        "reduit": 2,
+        "autres": 0
+      },
+      "nonScannes": {
+        "lpGratuit": 0,
+        "lpPayant": 0,
+        "gratuit": 1,
+        "plein": 0,
+        "reduit": 0,
+        "autres": 0
+      },
+      "nonScannesCompte": 1
+    }
+  }
+]

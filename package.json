@@ -1,0 +1,33 @@
+{
+  "name": "stats",
+  "version": "1.0.0",
+  "description": "",
+  "main": "aggregate.js",
+  "dependencies": {
+    "autodetect-decoder-stream": "^1.0.0",
+    "bluebird": "^3.4.7",
+    "connect": "^3.4.1",
+    "csvtojson": "^0.5.12",
+    "iconv-lite": "^0.4.13",
+    "lodash": "^4.13.1",
+    "moment": "^2.17.1",
+    "number-formatter": "^1.2.0",
+    "serve-static": "^1.10.2",
+    "stream-to-string": "^1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cinemathequefr/stats.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cinemathequefr/stats/issues"
+  },
+  "homepage": "https://github.com/cinemathequefr/stats#readme"
+}

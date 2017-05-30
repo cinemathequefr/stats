@@ -1,0 +1,212 @@
+
+
+body {
+  font-family: Source Sans Pro;
+  font-size: 100%;
+  color: #222;
+  font-size: 14px;
+  background-color: #b4bf9f;
+}
+
+h1 { font-size: 1.5rem; font-weight: 600; margin: 3rem 0 2rem 0; }
+h2 { font-size: 1.25rem; font-weight: 600;  margin: 3rem 0 0.5rem 0; }
+
+select {
+  margin: 0 0 12px 0;
+}
+
+label {
+  display: block;
+}
+
+.container {
+  display: block; position: relative;
+  width: 1100px; min-height: calc(100vh + 1px);
+  margin: 0 auto; padding: 48px 24px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.legend {
+  display: block; position: relative; float: right;
+  margin: 2px 0 0 0; /*border: solid 1px #ccc;*/ padding: 2px;
+  color: #666;
+  font-size: 0.875rem;
+}
+
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  /*margin-top: 24px; margin-bottom: 24px;*/
+  margin: 0;
+  border-collapse: collapse; border-spacing : 0;
+  border: solid 1px #333 !important;
+  font-size: 0.875rem;
+}
+
+table thead th {
+  border: solid 1px #333;
+  overflow: hidden;
+  padding: 4px 3px;
+  /*white-space: nowrap;*/
+  vertical-align: middle;
+}
+
+table tbody th, table td {
+  border-top: solid 1px #ccc; border-bottom: solid 1px #ccc;
+  border-left: solid 1px #333; border-right: solid 1px #333;
+  overflow: hidden;
+  padding: 1px 3px;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+table tr:last-child td, table tr:last-child th {
+  border-bottom: solid 1px #333;  
+}
+
+table.stats th {
+  cursor: pointer;
+  -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+}
+
+table.stats th:after {
+  float: right;
+  content: url("data:image/svg+xml;base64,PHN2ZyBzdHlsZT0ib3BhY2l0eTogMC41OyIgd2lkdGg9IjEyIiBoZWlnaHQ9IjEyIiB2aWV3Qm94PSIwIDAgMTc5MiAxNzkyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0xNDA4IDEwODhxMCAyNi0xOSA0NWwtNDQ4IDQ0OHEtMTkgMTktNDUgMTl0LTQ1LTE5bC00NDgtNDQ4cS0xOS0xOS0xOS00NXQxOS00NSA0NS0xOWg4OTZxMjYgMCA0NSAxOXQxOSA0NXptMC0zODRxMCAyNi0xOSA0NXQtNDUgMTloLTg5NnEtMjYgMC00NS0xOXQtMTktNDUgMTktNDVsNDQ4LTQ0OHExOS0xOSA0NS0xOXQ0NSAxOWw0NDggNDQ4cTE5IDE5IDE5IDQ1eiIvPjwvc3ZnPg==");
+}
+
+
+table.stats col:nth-child(1) { width: 15%; }
+table.stats col:nth-child(2) { width: 5%; }
+table.stats col:nth-child(3) { width: 6%; }
+table.stats col:nth-child(4) { width: 29%; }
+table.stats td:nth-child(1), table.stats td:nth-child(2), table.stats td:nth-child(3) { text-align: center; }
+
+div.barContainer {
+  display: block; position: relative;
+  width: 100%; height: 18px;
+}
+
+div.barContainer > .jauge {
+  display: block; position: absolute;
+  height: 18px;
+  background-color: #ccc;
+}
+
+div.barContainer > .compteBar {
+  display:block; position: relative; float: left;
+  height: 18px;
+  background-color: #c66;
+  transition: 0.5s;
+}
+
+div.barContainer > .compteBar.exclude, div.barContainer > .compteBar.exclude:hover {
+  background-color: #999;
+}
+
+
+div.barContainer > .compteBar:hover {
+  background-color: #c33;
+  transition: 0s;
+}
+
+div.barContainer > .compteNb {
+  display: block; position: relative; float: left;
+  padding-left: 2px; color: #933; font-weight: 600;
+}
+
+div.barContainer > .compteNb.exclude {
+  color: #999; font-weight: 400;
+}
+
+
+div.barContainer > .recetteBar {
+  display:block; position: absolute;
+  bottom: 0; height: 5px;
+  background-color: #039;
+}
+
+.summaryTable td {
+  height: 1.5rem;
+  cursor: pointer;
+}
+
+table.summaryTable > th { cursor: default !important; }
+table.summaryTable > tbody th { font-weight: 400; }
+
+table.summaryTable > tbody > tr:hover td:not(.active), table.summaryTable > tbody > tr:hover th { background-color: #ddd !important; }
+table.summaryTable > tbody > tr td:not(.active):hover { background-color: #ccc !important; }
+
+table.summaryTable > tbody td { text-align: right; }
+table.summaryTable > tbody td.active, table.summaryTable > tbody td.active:hover { background-color: #c9b !important; }
+
+
+table.summaryTable > tbody > tr.subGroup { background-color: #eee; }
+table.summaryTable > tbody td.bold { font-weight: 600; }
+
+.timeChart {
+  position: relative;
+  width: 100%; /*height: 150px;*/ height: 250px;
+  margin: 12px 0 4px 0px;
+  background-color: #fff;
+  border: solid 1px #ccc;
+}
+
+.timeChart svg {
+}
+
+.timeChart .header {
+  fill: #333;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.timeChart .bar {
+  fill: #999;
+  shape-rendering: crispEdges;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.timeChart .bar:hover {
+  fill: #666;
+  transition: 0s;
+}
+
+.timeChart .bar.current { fill: #c6a; }
+
+
+
+.d3-tip {
+  padding: 6px 12px;
+  background: #333; color: #eee;
+  font-weight: 400;
+  line-height: 1.2;
+  border-radius: 2px;
+  text-align: center;
+}
+
+.d3-tip-label {
+  font-size: 0.75rem;
+}
+
+.d3-tip-value {
+  font-size: 0.875rem; font-weight: 600;
+}
+
+
+.y.axis .domain {
+  stroke: none;
+}
+
+.y.axis path, .y.axis line {
+  fill: none;
+  stroke: #ddd;
+  shape-rendering: crispEdges;
+}
+
+.y.axis text {
+  fill: #333;
+  font-size: 12px;
+}
