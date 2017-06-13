@@ -29,6 +29,8 @@ function run() {
     summary.on("summaryCell.click", function (e, f) {
       var cell = $(f.target).data("cell");
 
+      console.log("cell", cell); // TEMP
+
       // VERY DIRTY HACK
       $(".summaryTable td").removeClass("active");
       $(f.target).addClass("active");

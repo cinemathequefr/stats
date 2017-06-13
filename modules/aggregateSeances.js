@@ -6,7 +6,7 @@ var _ = require("lodash");
 var config = require("./config.js");
 
 function aggregateSeances (seances) {
-  console.log(seances);
+  // console.log(seances);
   return _({})
   .assign(   // Répartit les séances dans 3 groupes correspondant à leur salle
     { 1: [], 2: [], 3: [] },

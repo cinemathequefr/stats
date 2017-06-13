@@ -6,6 +6,8 @@ $(run);
 function run () {
   "use strict";
 
+  console.log(moment().isAfter("2017-06-02", "day"));
+
   $.getJSON("data/cycles/aggregate.json", function (data) {
     data = _(data).mapValues(function (v, k) {
       return _({}).assign(v, { idCycle: parseInt(k, 10) }).value();
@@ -14,6 +16,9 @@ function run () {
     .sortBy("dateFrom")
     .reverse()
     .value();
+
+
+    // console.log
 
     var sortOrder;
 

@@ -79,7 +79,6 @@ toString(stream).then(function (data) {
       var q = (err || !data) ? [] : JSON.parse(data);
 
       p[weekName] = aggregateSeances(o);
-      // p[weekName] = aggregateToWeek(o);
 
       writeJSON(
         _(q)
@@ -110,19 +109,8 @@ function writeJSON(data, name) {
   );
 }
 
-/*
-// TODO: module (used by cycle.js too)
-function writeJSON(data, name) {
-  var json = JSON.stringify(data, null, 2); // Pretty print
-  fs.writeFile(path.local + "public/data/" + name + ".json", json, "utf8"); // Writes a file locally
 
-  // TODO: error handling when trying to write to Constellation
-  fs.writeFile(path.remote + "data/" + name + ".json", json, "utf8"); // Writes a file on Constellation2
-}
-*/
-
-
-// Aggregation #1: Entrées -> Séance
+// Agrégation des tickets en séances
 function aggregateToSeance(data) {
   return _(data)
   .map(function (item) {
@@ -146,19 +134,13 @@ function aggregateToSeance(data) {
         tarif: _(items).groupBy("tarif").mapValues(item => item.length).value(),
         tarifCat: _(items).reduce(function (acc, item) {
           return _({}).assign(acc, (function (item) {
-
             if (_.indexOf(config.codesTarifsLp, item.tarif) > -1) return { lp: acc.lp + 1 }; // Codes tarifaires Libre Pass
-            // if (_.indexOf([1862576, 2003563, 1968650, 1863782, 1863730, 1862470], item.tarif) > -1) return { lp: acc.lp + 1 }; // Codes tarifaires Libre Pass
-
             if (item.montant == 0) return { gratuit: acc.gratuit + 1 };
             return { payant: acc.payant + 1 };
           })(item))
           .value()
         }, { payant: 0, lp: 0, gratuit: 0 }),
-
         web: _(items).filter(function (item) { return _.indexOf(config.codesTarifsWeb, item.idCanal) > -1; }).value().length // Codes canal de vente web
-        // web: _(items).filter(function (item) { return _.indexOf([7096, 7216], item.idCanal) > -1; }).value().length // Codes canal de vente web
-
       }
     };
   })
@@ -166,65 +148,3 @@ function aggregateToSeance(data) {
   .sortBy("date")
   .value();
 }
-
-
-
-
-
-
-/*
-// Aggregation #2: Séances -> Semaine
-function aggregateToWeek(data) {
-
-  data = _(data)
-  .filter(item => !item.exclude)
-  .value();
-
-
-  return _({})
-  .assign(
-    { 1: [], 2: [], 3: [] },
-    _(data).groupBy(function (b) { return b.salle.id; }).value()
-  )
-  .mapValues(function (c, i) {
-    return {
-      seances: c.length,
-      capacite: c.length * CAPACITY[i], // Potential attendance
-      entrees: _(c).sumBy(function (d) { return d.tickets.compte }),
-      entreesPayant: _(c).sumBy(function (d) { return d.tickets.tarifCat.payant }),
-      entreesLP: _(c).sumBy(function (d) { return d.tickets.tarifCat.lp }),
-      entreesGratuit: _(c).sumBy(function (d) { return d.tickets.tarifCat.gratuit }),
-      web: _(c).sumBy(function (d) { return d.tickets.web }),
-      recette: _(c).sumBy(function (d) { return d.tickets.recette })
-    };
-  })
-  .thru(function (b) { // Computes sum in a "global" object (TODO: use `_.tap` for consistency)
-    var ks = _.keys(b["1"]);
-    return _(b)
-      .assign({
-        "global": _
-          .zipObject(
-            ks,
-            _.map(ks, function (k) {
-              return _(b).reduce(function (acc, val) {
-                return val[k] + acc;
-              }, 0);
-            })
-          )
-      })
-      .value();
-  })
-  .tap(function (b) {
-    _(b).forEach(function (c) { // Computes averages and percent
-      _(c).assign({
-        moyEntreesSeance: c.entrees / c.seances,
-        moyRecetteSeance: c.recette / c.seances,
-        moyRecetteEntree: c.recette / c.entrees,
-        moyRecetteEntreePayant: c.recette / c.entreesPayant,
-        tauxRemplissage: c.entrees / c.capacite
-      }).value();
-    });
-  })
-  .value();
-}
-*/

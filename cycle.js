@@ -41,32 +41,13 @@ p
     var p = {};
     var q = (err || !data) ? [] : JSON.parse(data);
 
-    // TODO: ajouter les informations sur le cycle (titre, dates de début et fin, durée en jours)
-    // console.log(
-    //   _({})
-    //     .assign(
-    //       aggregateSeances(o),
-    //       _(cycles).chain().find(c => c.idCycleSite === idCycle).pick(["title", "dateFrom", "dateTo"]).value()
-    //     )
-    //     .thru(c => _({}).assign(c, { "duration": moment(c.dateTo).diff(c.dateFrom, "days") + 1 }).value())
-    //     .value()
-    // );
-    
-    p[idCycle] = _({})
+    p[idCycle] = _({}) // Informations sur le cycle (titre, dates de début et fin, durée en jours)
       .assign(
         aggregateSeances(o),
         _(cycles).chain().find(c => c.idCycleSite === idCycle).pick(["title", "dateFrom", "dateTo"]).value()
       )
       .thru(c => _({}).assign(c, { "duration": moment(c.dateTo).diff(c.dateFrom, "days") + 1 }).value())
       .value();
-
-
-    // p[idCycle] = aggregateSeances(o);
-
-
-
-
-
 
     writeJSON(
       _(q)
