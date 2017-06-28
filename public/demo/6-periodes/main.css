@@ -1,0 +1,75 @@
+body {
+  font-family: Source Sans Pro;
+  font-size: 100%;
+  color: #222;
+  font-size: 14px;
+  background-color: #b4bf9f;
+}
+
+h1 { font-size: 1.5rem; font-weight: 600; margin: 0rem 0 2rem 0; }
+h2 { font-size: 1.25rem; font-weight: 600;  margin: 0rem 0 0.5rem 0; }
+
+select {
+  margin: 0 0 12px 0;
+}
+
+optgroup { padding-bottom: 4px; }
+optgroup:not(:first-child) { padding-top: 4px; border-top: dotted 1px #999; } 
+
+
+label {
+  display: block;
+}
+
+.container {
+  display: block; position: relative;
+  width: 1100px; min-height: calc(100vh + 1px);
+  margin: 0 auto; padding: 48px 24px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  margin: 24px 0;
+  border-collapse: collapse; border-spacing : 0;
+  border: solid 1px #333 !important;
+  font-size: 0.875rem;
+}
+
+table th, table td {
+  border-top: solid 1px #ccc; /*border-bottom: solid 1px #ccc;*/
+  border-left: solid 1px #333; border-right: solid 1px #333;
+  overflow: hidden;
+  padding: 3px 3px;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+table th {
+  border: solid 1px #333;
+  overflow: hidden;
+  padding: 4px 3px;
+  vertical-align: middle;
+}
+
+
+tr.hi {
+  background-color: #ff9;
+}
+
+table tr:last-child td, table tr:last-child th {
+  border-bottom: solid 1px #333;
+}
+
+table tr.total td {
+  font-weight: 600;
+  background-color: #dbe0d1;
+  border-top: solid 1px #333;
+}
+
+.right { text-align: right; }
+.center { text-align: center; }
