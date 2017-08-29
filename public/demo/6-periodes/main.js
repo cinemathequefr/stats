@@ -1,48 +1,5 @@
-_.templateSettings.interpolate = /{{([\s\S]+?)}}/g; // Set mustache-style interpolate delimiters
+// _.templateSettings.interpolate = /{{([\s\S]+?)}}/g; // Set mustache-style interpolate delimiters
 moment.locale("fr", { monthsShort: "jan_fév_mar_avr_mai_juin_juil_aoû_sep_oct_nov_déc".split("_"), weekdaysShort: "Dim_Lun_Mar_Mer_Jeu_Ven_Sam".split("_") });
-
-
-/*
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define([], factory);
-  } else if (typeof exports === 'object') {
-    // Node. Does not work with strict CommonJS, but
-    // only CommonJS-like environments that support module.exports,
-    // like Node.
-    module.exports = factory();
-  } else {
-    // Browser globals (root is window)
-    root.memoize = factory();
-  }
-}(this, function() {
-  "use strict";
-
-  var memoize = function(func) {
-    var stringifyJson = JSON.stringify,
-      cache = {};
-
-    var cachedfun = function() {
-      var hash = stringifyJson(arguments);
-      return (hash in cache) ? cache[hash] : cache[hash] = func.apply(this, arguments);
-    };
-
-    cachedfun.__cache = (function() {
-      cache.remove || (cache.remove = function() {
-        var hash = stringifyJson(arguments);
-        return (delete cache[hash]);
-      });
-      return cache;
-    }).call(this);
-
-    return cachedfun;
-  };
-
-  return memoize;
-}));
-*/
-
 
 var config = {
   path: {
@@ -53,11 +10,6 @@ var config = {
   codesTarifsLp: [1862576, 2003563, 1968650, 1863782, 1863730, 1862470],
   codesTarifsWeb: [7096, 7216]
 };
-
-// var periode = "isoWeekday";
-// var periode = "monthFold";
-// var periode = "slot";
-
 
 var temp = _.template([
   "<table>",
@@ -72,14 +24,14 @@ var temp = _.template([
   "</tr>",
   "<% _.forEach(data, function (row) { %>",
   "<tr>",
-  // "<td class='center'>{{ (grouping[periode][1]) }}</td>", // TODO: afficher correctement le label de chaque ligne
-  "<td class='center'>{{ row[0] }}</td>",
-  "<td class='right'>{{ format('### ##0.', row[1].global.seances) }}</td>",
-  "<td class='right'>{{ format('### ##0.', row[1].global.entrees) }}</td>",
-  "<td class='right'>{{ format('# ##0,00', row[1].global.moyEntreesSeance) }}</td>",
-  "<td class='right'>{{ format('# ##0,00 €', row[1].global.recette) }}</td>",
-  "<td class='right'>{{ format('# ##0,00 €', row[1].global.moyRecetteEntree) }}</td>",
-  "<td class='right'>{{ format('#0,0%',(row[1].global.tauxRemplissage) * 100) }}</td>",
+  "<td data-periode='<%= row[0] %>' class='center'><%= grouping[periode][1]({ d: row[0] }) %></td>", // TODO: afficher correctement le label de chaque ligne
+  // "<td class='center'>{{ row[0] }}</td>",
+  "<td class='right'><%= format('### ##0.', row[1].global.seances) %></td>",
+  "<td class='right'><%= format('### ##0.', row[1].global.entrees) %></td>",
+  "<td class='right'><%= format('# ##0,00', row[1].global.moyEntreesSeance) %></td>",
+  "<td class='right'><%= format('# ##0,00 €', row[1].global.recette) %></td>",
+  "<td class='right'><%= format('# ##0,00 €', row[1].global.moyRecetteEntree) %></td>",
+  "<td class='right'><%= format('#0,0%',(row[1].global.tauxRemplissage) * 100) %></td>",
   "</tr>",
   "<% }); %>",
   "</table>"
@@ -87,37 +39,24 @@ var temp = _.template([
 
 
 var grouping = { // La première valeur est la fonction de regroupement, la seconde le template à utiliser pour le label de chaque ligne (TODO)
-  global: [true, "Global"],
-  day: [function (d) { return d.moment.format("YYYY-MM-DD"); }, _.template("{{ d }}")], // Ne fonctionne pas
-  week: [function (d) { return d.moment.format("YYYY-W"); }, "test"],
-  month: [function (d) { return d.moment.format("YYYY-MM"); }, "test"],
-  year: [function (d) { return d.moment.format("YYYY"); }, "test"],
+  global: [true, _.template("Global")],
+  day: [function (d) { return d.moment.format("YYYY-MM-DD"); }, _.template("<%= moment(d).format('ddd D MMM YYYY') %>")],
+  week: [function (d) { return d.moment.format("YYYY-W"); },  _.template("<%= moment(d).format('YYYY [semaine] W') %>")],
+  month: [function (d) { return d.moment.format("YYYY-MM"); },  _.template("")],
+  year: [function (d) { return d.moment.format("YYYY"); },   _.template("")],
   season: [
     function (d) {
       var  y = d.moment.year();
       return d.moment.isBefore(moment().year(y).month(8).day(15)) ? s(y - 1) : s(y);
       function s (y) { return y + "-" + (y + 1); }
     },
-    "test"
+      _.template("")
   ],
-  slot: [function (d) { return d.moment.format("HH:mm"); }, "test"],
-  isoWeekday: [function (d) { return d.moment.isoWeekday(); }, "test"], // groups by weekday (creates keys "1", "2" ... "7"])
-  weekFold: [function (d) { return d.moment.isoWeek(); }, "test"],
-  monthFold: [function (d) { return d.moment.format("M"); }, "test"]
+  slot: [function (d) { return d.moment.format("HH:mm"); }, _.template("")],
+  isoWeekday: [function (d) { return d.moment.isoWeekday(); }, _.template("<%= [null, 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'][d] %>")], // groups by weekday (creates keys "1", "2" ... "7"])
+  weekFold: [function (d) { return d.moment.isoWeek(); }, _.template("")],
+  monthFold: [function (d) { return d.moment.format("M"); }, _.template("")]
 };
-
-
-// var grouping = {
-//   global: true,
-//   day: function (d) { return d.moment.format("YYYY-MM-DD"); },
-//   week: function (d) { return d.moment.format("YYYY-W"); },
-//   month: function (d) { return d.moment.format("YYYY-MM"); },
-//   year: function (d) { return d.moment.format("YYYY"); },
-//   slot: function (d) { return d.moment.format("HH:mm") },
-//   isoWeekday: function (d) { return [null, "01-Lun", "02-Mar", "03-Mer", "04-Jeu", "05-Ven", "06-Sam", "07-Dim"][d.moment.isoWeekday()]; }, // groups by weekday (creates keys "1", "2" ... "7")
-//   weekFold: function (d) { return d.moment.isoWeek(); },
-//   monthFold: function (d) { return [null, "01-Jan", "02-Fév", "03-Mar", "04-Avr", "05-Mai", "06-Juin", "07-Juil", "08-Aoû", "09-Sep", "10-Oct", "11-Nov", "12-Déc"][d.moment.format("M")]; }
-// };
 
 var data;
 
@@ -135,23 +74,20 @@ $(function () {
 });
 
 
-
-function compute (data, periode) {
-  return _(group(data, periode))
+var compute = memoize(function (periode) {
+  return _(group(data, periode)) // NB : data is a reference external to this function
     .mapValues(function (g) {
       return aggregateSeances(g);
     })
     .toPairs()
     .sortBy(function (d) { return parseInt(d[0], 10) || d[0]; })
     .value();
-}
-
-var comp = memoize(compute);
+});
 
 
 function render (periode) {
   $(".container table").remove();
-  $("<div>").appendTo(".container").html(temp({ "data": comp(data, periode), "periode": periode }));
+  $("<div>").appendTo(".container").html(temp({ "data": compute(periode), "periode": periode }));
 }
 
 
