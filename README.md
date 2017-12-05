@@ -73,6 +73,19 @@ Pour l'agrégation globale, on aura les variables (pour chaque salle et l'ensemb
 
 ## Cycles
 
+Opération manuelle d'ajout des données d'un cycle :
+
+
+* Dans l'admin Digitick, extraire les données du cycle ("Etiquette") pour la variable Place:Représentation:ID.
+* Transformer (manuellement) les données CSV en tableau JSON
+* Dédoublonner les valeurs avec Lodasher : `_(data).uniq().sort().value()`
+* Ajouter une entrée dans **public/data/static/cycle-seances.json** : l'ID NOS du cycle (clé) et le tableau obtenu dans Lodasher (valeur)
+* Ajouter une entrée contenant les informations sur le cycle dans **public/data/static/cycle.json**
+* Exécuter le script cycle avec l'ID du cycle en argument
+
+
+
+
 2017-05-19 : l'interface Digitick permet de récupérer séparément des informations concernant les cycles, via le champ Etiquette.
 On peut faire une requête en sélectionnant une valeur d'étiquette (correspondant à un cycle) et choisir en sortie la seul variable Place:Représentation:ID.
 Le fichier CSV obtenu peut ensuite être manuellement converti en array JSON. Il faut ensuite dédoublonner les valeurs (puisqu'il y a une par billet), par exemple dans Lodasher :

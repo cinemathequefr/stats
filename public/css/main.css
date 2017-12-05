@@ -22,10 +22,14 @@ label {
 .container {
   display: block; position: relative;
   width: 1100px; min-height: calc(100vh + 1px);
-  margin: 0 auto; padding: 48px 24px;
+  margin: 12px auto; padding: 24px 24px;
   background-color: #fff;
   box-sizing: border-box;
 }
+
+.nav { float: right; overflow: hidden; }
+.nav > a { display: inline-block; padding: 2px 2px; }
+
 
 .legend {
   display: block; position: relative; float: right;

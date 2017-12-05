@@ -13,6 +13,7 @@ var config = {
 
 var temp = _.template([
   "<table>",
+  "<thead>",
   "<tr>",
   "<th>Période</th>",
   "<th>Séances</th>",
@@ -22,10 +23,12 @@ var temp = _.template([
   "<th>Moy. recette / entrée</th>",
   "<th>Taux de remplissage</th>",
   "</tr>",
+  "</thead>",
+  "<tbody>",
   "<% _.forEach(data, function (row) { %>",
   "<tr>",
   "<td data-periode='<%= row[0] %>' class='center'><%= grouping[periode][1]({ d: row[0] }) %></td>", // TODO: afficher correctement le label de chaque ligne
-  // "<td class='center'>{{ row[0] }}</td>",
+  // "<td class='center'><%= row[0] %></td>",
   "<td class='right'><%= format('### ##0.', row[1].global.seances) %></td>",
   "<td class='right'><%= format('### ##0.', row[1].global.entrees) %></td>",
   "<td class='right'><%= format('# ##0,00', row[1].global.moyEntreesSeance) %></td>",
@@ -34,6 +37,7 @@ var temp = _.template([
   "<td class='right'><%= format('#0,0%',(row[1].global.tauxRemplissage) * 100) %></td>",
   "</tr>",
   "<% }); %>",
+  "</tbody>",
   "</table>"
 ].join(""));
 
@@ -41,21 +45,22 @@ var temp = _.template([
 var grouping = { // La première valeur est la fonction de regroupement, la seconde le template à utiliser pour le label de chaque ligne (TODO)
   global: [true, _.template("Global")],
   day: [function (d) { return d.moment.format("YYYY-MM-DD"); }, _.template("<%= moment(d).format('ddd D MMM YYYY') %>")],
-  week: [function (d) { return d.moment.format("YYYY-W"); },  _.template("<%= moment(d).format('YYYY [semaine] W') %>")],
-  month: [function (d) { return d.moment.format("YYYY-MM"); },  _.template("")],
-  year: [function (d) { return d.moment.format("YYYY"); },   _.template("")],
-  season: [
+  week: [function (d) { return d.moment.format("YYYY-[W]WW"); },  _.template("<%= moment(d).format('YYYY [semaine] W') %>")],
+  month: [function (d) { return d.moment.format("YYYY-MM"); },  _.template("<%= moment(d).format('MMM YYYY') %>")],
+  year: [function (d) { return d.moment.format("YYYY"); },   _.template("<%= d %>")],
+  season: [ // Période allant de la réouverture (fin août) jusqu'à la fermeture annuelle d'été
     function (d) {
       var  y = d.moment.year();
-      return d.moment.isBefore(moment().year(y).month(8).day(15)) ? s(y - 1) : s(y);
+      return d.moment.isBefore(y + "-08-15") ? s(y - 1) : s(y);
+      // return d.moment.isBefore(moment().year(y).month(8).day(15)) ? s(y - 1) : s(y); // BUG : renvoie des séances dans la saison 2014-2015
       function s (y) { return y + "-" + (y + 1); }
     },
-      _.template("")
+    _.template("<%= d %>")
   ],
-  slot: [function (d) { return d.moment.format("HH:mm"); }, _.template("")],
+  slot: [function (d) { return d.moment.format("HH:mm"); }, _.template("<%= d %>")],
   isoWeekday: [function (d) { return d.moment.isoWeekday(); }, _.template("<%= [null, 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'][d] %>")], // groups by weekday (creates keys "1", "2" ... "7"])
-  weekFold: [function (d) { return d.moment.isoWeek(); }, _.template("")],
-  monthFold: [function (d) { return d.moment.format("M"); }, _.template("")]
+  weekFold: [function (d) { return d.moment.isoWeek(); }, _.template("Semaine <%= d %>")],
+  monthFold: [function (d) { return d.moment.format("M"); }, _.template("<%= [null, 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'][d] %>")]
 };
 
 var data;
@@ -74,7 +79,7 @@ $(function () {
 });
 
 
-var compute = memoize(function (periode) {
+var compute = memoize(function (periode) { // TODO: use _.memoize (instead of extra dependency memoize.js)
   return _(group(data, periode)) // NB : data is a reference external to this function
     .mapValues(function (g) {
       return aggregateSeances(g);
@@ -86,8 +91,10 @@ var compute = memoize(function (periode) {
 
 
 function render (periode) {
+  // TODO: less dirty
   $(".container table").remove();
   $("<div>").appendTo(".container").html(temp({ "data": compute(periode), "periode": periode }));
+  $("table").stickyTableHeaders({cacheHeaderHeight: true});
 }
 
 

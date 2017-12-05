@@ -32,6 +32,7 @@ p
 
   var o = _(cycleSeances) // Extrait les items séances correspondant aux IDs de séance du cycle
     .map(id => _(seances).filter(s => s.idSeance === id).value()[0])
+    .filter(s => !!s) // 2017-12-05 : on filtre les valeurs null provenant de séances dont l'id est présent dans cycle-seances.json mais qui ne sont pas dans seances.json (eg séances n'ayant pas eu lieu, séances à venir)
     .sortBy("date")
     .value();
 
@@ -63,6 +64,6 @@ p
 
 function writeJSON(data, name) {
   var json = JSON.stringify(data, null, 2);
-  fs.writeFile(config.path.local + name, json, "utf8");
-  fs.writeFile(config.path.remote + name, json, "utf8");
+  fs.writeFile(config.path.local + name, json, "utf8", () => {});
+  fs.writeFile(config.path.remote + name, json, "utf8", () => {});
 }

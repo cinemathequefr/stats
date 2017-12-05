@@ -99,13 +99,15 @@ function writeJSON(data, name) {
   fs.writeFile(
     config.path.local + name,
     json,
-    "utf8"
+    "utf8",
+    () => {} // FIXED: DeprecationWarning: Calling an asynchronous function without callback is deprecated
   );
 
   fs.writeFile(
     config.path.remote + name,
     json,
-    "utf8"
+    "utf8",
+    () => {}
   );
 }
 
