@@ -42,6 +42,16 @@ var temp = _.template([
 ].join(""));
 
 
+var slots = {
+  "07:00": "Avant 13h00",
+  "13:00": "13h00 - 15h00",
+  "15:00": "15h00 - 17h00",
+  "17:00": "17h00 - 19h00",
+  "19:00": "19h00 - 21h00",
+  "21:00": "21h00 - 23h00",
+  "23:00": "Après 23h00"
+};
+
 var grouping = { // La première valeur est la fonction de regroupement, la seconde le template à utiliser pour le label de chaque ligne (TODO)
   global: [true, _.template("Global")],
   day: [function (d) { return d.moment.format("YYYY-MM-DD"); }, _.template("<%= moment(d).format('ddd D MMM YYYY') %>")],
@@ -57,7 +67,9 @@ var grouping = { // La première valeur est la fonction de regroupement, la seco
     },
     _.template("<%= d %>")
   ],
-  slot: [function (d) { return d.moment.format("HH:mm"); }, _.template("<%= d %>")],
+  time: [function (d) { return d.moment.format("HH:mm"); }, _.template("<%= d %>")],
+  slot: [function (d) { return timeSlot(d.moment.format("HH:mm")); }, _.template("<%= slots[d] %>")],
+  // slot: [function (d) { return timeSlot(d.moment.format("HH:mm")); }, _.template("<%= d %>")],
   isoWeekday: [function (d) { return d.moment.isoWeekday(); }, _.template("<%= [null, 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'][d] %>")], // groups by weekday (creates keys "1", "2" ... "7"])
   weekFold: [function (d) { return d.moment.isoWeek(); }, _.template("Semaine <%= d %>")],
   monthFold: [function (d) { return d.moment.format("M"); }, _.template("<%= [null, 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'][d] %>")]
@@ -68,7 +80,7 @@ var data;
 $(function () {
   $.getJSON("../../data/seances.json")
   .then(function (d) {
-    data = d;
+    data = _(d).filter(d => !d.exclude).value(); // (2017-12-18) : filtrer pour retirer les séances à exclure
     $("select").on("change", function () {
       render(this.value);
     });
@@ -85,16 +97,46 @@ var compute = memoize(function (periode) { // TODO: use _.memoize (instead of ex
       return aggregateSeances(g);
     })
     .toPairs()
-    .sortBy(function (d) { return parseInt(d[0], 10) || d[0]; })
+    .sortBy(function (d) { var n = Number(d[0]); return !!n ? n : d[0] })
+    // .sortBy(function (d) { return parseInt(d[0], 10) || d[0]; }) // BUG: time strings ("hh:mm") are parsed as integers therefore incorrectly sorted. SOLVED ABOVE
     .value();
 });
+
+
+/*
+ * timeSlot
+ * @param ts {Str} A time string ("hh:mm")
+ * @date 2017-12-18
+ * An array of time-slot start times (eg. ["08:00", "17:00", "19:00", "20:30"]) passed to the immediate function
+ * creates a function that, given an input time, returns the start time of the slot it belongs to ("17:50" => "17:00", "19:00" => "19:00")
+ * If the input time is before the first slot, then it belongs to the last ("01:30" => "20:30")
+ * (Notice the weird way to implement recursion using reduce)
+ * Dependencies : lodash, moment
+ */
+var timeSlot = (function (ts) {
+  var mts = _(ts).map(hhmm => moment(hhmm, "HH:mm")).value();
+  return function (hhmm) {
+    var found;
+    var o = _(mts).reduceRight(
+      function (acc, i) {
+        return found ? found : !i.isAfter(acc) ? found = i : acc;
+      },
+      moment(hhmm, "HH:mm")
+    );
+    if (!found) o = _.last(mts); // If the input time is before the first slot, then it goes to the last (for late night shows)
+    return o.format("HH:mm");
+  };
+})(_.keys(slots)); // Slots start at the given hour
+
+
+
 
 
 function render (periode) {
   // TODO: less dirty
   $(".container table").remove();
   $("<div>").appendTo(".container").html(temp({ "data": compute(periode), "periode": periode }));
-  $("table").stickyTableHeaders({cacheHeaderHeight: true});
+  $("table").stickyTableHeaders({ cacheHeaderHeight: true });
 }
 
 
@@ -104,6 +146,7 @@ function group (data, grp) {
     return _({}).assign(d, { moment: moment(d.date) }).value(); // Adds the `moment` value to each datum
   })
   .groupBy(grouping[grp][0])
+  // .tap(d => { console.log(d); })
   .value();
 }
 
@@ -112,7 +155,7 @@ function aggregateSeances (seances) {
   .assign(   // Répartit les séances dans 3 groupes correspondant à leur salle
     { 1: [], 2: [], 3: [] },
     _(seances)
-      .filter(item => !item.exclude)
+      // .filter(item => !item.exclude) // UNUSED : on effectue le filtrage en amont (plus fiable car évite la création de keys pour des valeurs vides)
       .groupBy(b => b.salle.id)
       .value()
   )
