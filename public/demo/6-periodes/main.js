@@ -22,6 +22,7 @@ var temp = _.template([
   "<th>Recette</th>",
   "<th>Moy. recette / entrée</th>",
   "<th>Taux de remplissage</th>",
+  "<th>Taux Libre pass</th>",
   "</tr>",
   "</thead>",
   "<tbody>",
@@ -35,6 +36,11 @@ var temp = _.template([
   "<td class='right'><%= format('# ##0,00 €', row[1].global.recette) %></td>",
   "<td class='right'><%= format('# ##0,00 €', row[1].global.moyRecetteEntree) %></td>",
   "<td class='right'><%= format('#0,0%',(row[1].global.tauxRemplissage) * 100) %></td>",
+
+
+  "<td class='right'><%= format('#0,0%',(row[1].global.tauxLP) * 100) %></td>",
+
+
   "</tr>",
   "<% }); %>",
   "</tbody>",
@@ -80,7 +86,7 @@ var data;
 $(function () {
   $.getJSON("../../data/seances.json")
   .then(function (d) {
-    data = _(d).filter(d => !d.exclude).value(); // (2017-12-18) : filtrer pour retirer les séances à exclure
+    data = _(d).filter(d => !d.exclude).value(); // (2017-12-18) : retire les séances à exclure
     $("select").on("change", function () {
       render(this.value);
     });
@@ -110,7 +116,7 @@ var compute = memoize(function (periode) { // TODO: use _.memoize (instead of ex
  * An array of time-slot start times (eg. ["08:00", "17:00", "19:00", "20:30"]) passed to the immediate function
  * creates a function that, given an input time, returns the start time of the slot it belongs to ("17:50" => "17:00", "19:00" => "19:00")
  * If the input time is before the first slot, then it belongs to the last ("01:30" => "20:30")
- * (Notice the weird way to implement recursion using reduce)
+ * (Notice the weird way to imitate recursion using reduce)
  * Dependencies : lodash, moment
  */
 var timeSlot = (function (ts) {
@@ -168,7 +174,7 @@ function aggregateSeances (seances) {
       entreesLP: _(c).sumBy(function (d) { return d.tickets.tarifCat.lp }),
       entreesGratuit: _(c).sumBy(function (d) { return d.tickets.tarifCat.gratuit }),
       web: _(c).sumBy(function (d) { return d.tickets.web }),
-      recette: _(c).sumBy(function (d) { return d.tickets.recette })
+      recette: _(c).sumBy(function (d) { return d.tickets.recette }),
     };
   })
   .thru(function (b) { // Calcule la somme des valeurs pour les trois salles et l'inscrit dans une propriété global
@@ -194,7 +200,8 @@ function aggregateSeances (seances) {
         moyRecetteSeance: c.recette / c.seances,
         moyRecetteEntree: c.recette / c.entrees,
         moyRecetteEntreePayant: c.recette / c.entreesPayant,
-        tauxRemplissage: c.entrees / c.capacite
+        tauxRemplissage: c.entrees / c.capacite,
+        tauxLP: c.entreesLP / c.entrees // 2018-03-08 : ESSAI
       }).value();
     }).value();
   })

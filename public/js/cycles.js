@@ -6,19 +6,18 @@ $(run);
 function run () {
   "use strict";
 
-  console.log(moment().isAfter("2017-06-02", "day"));
+  // console.log(moment().isAfter("2017-06-02", "day"));
 
   $.getJSON("data/cycles/aggregate.json", function (data) {
-    data = _(data).mapValues(function (v, k) {
-      return _({}).assign(v, { idCycle: parseInt(k, 10) }).value();
-    })
-    .values()
-    .sortBy("dateFrom")
-    .reverse()
-    .value();
 
-
-    // console.log
+    data = _(data).sortBy("dateFrom").reverse().value();
+    // data = _(data).mapValues(function (v, k) {
+    //   return _({}).assign(v, { idCycle: parseInt(k, 10) }).value();
+    // })
+    // .values()
+    // .sortBy("dateFrom")
+    // .reverse()
+    // .value();
 
     var sortOrder;
 
@@ -35,7 +34,8 @@ function run () {
         "<th>Séances</th>",
         "<th>Entrées</th>",
         "<th>Entr./séance</th>",
-        "<th>Taux rempl.</th>",
+        "<th>% Rempl.</th>",
+        "<th>% LP</th>",
         "</tr>",
         "</thead>"
       ].join(""));
@@ -48,7 +48,8 @@ function run () {
         function (data, order) { return _.orderBy(data, function (item) { return item.global.seances; }, order); },
         function (data, order) { return _.orderBy(data, function (item) { return item.global.entrees; }, order); },
         function (data, order) { return _.orderBy(data, function (item) { return item.global.moyEntreesSeance; }, order); },
-        function (data, order) { return _.orderBy(data, function (item) { return item.global.tauxRemplissage; }, order); }
+        function (data, order) { return _.orderBy(data, function (item) { return item.global.tauxRemplissage; }, order); },
+        function (data, order) { return _.orderBy(data, function (item) { return item.global.entrees / item.global.entreesLP; }, order); }
       ];
       sortOrder = (sortOrder === "asc" ? "desc" : "asc");
       data = sort[col](data, sortOrder); // Important: data must be mutated
@@ -64,7 +65,7 @@ function run () {
 
       rows
         .selectAll("td")
-        .data(function (item) { return _.fill(Array(7), item); })
+        .data(function (item) { return _.fill(Array(8), item); })
         .each(function (item, i) {
           [
             function (el, item) { el.html(period(moment(item.dateFrom).format("D MMM YYYY"), moment(item.dateTo).format("D MMM YYYY"))); },
@@ -73,14 +74,15 @@ function run () {
             function (el, item) { el.html(item.global.seances); },
             function (el, item) { el.html(format('### ##0,#', item.global.entrees)); },
             function (el, item) { el.html(format('### ##0,0', item.global.moyEntreesSeance)); },
-            function (el, item) { el.html(format('#0,0', item.global.tauxRemplissage * 100)); }
+            function (el, item) { el.html(format('#0,0', item.global.tauxRemplissage * 100)); },
+            function (el, item) { el.html(format('#0,0', (item.global.entreesLP / item.global.entrees) * 100)); }
           ][i](d3.select(this), item)
         });
 
       rows.enter()
         .append("tr")
         .selectAll("td")
-        .data(function (item) { return _.fill(Array(7), item); })
+        .data(function (item) { return _.fill(Array(8), item); })
         .enter()
         .append("td")
         .each(function (item, i) {
@@ -91,7 +93,8 @@ function run () {
             function (el, item) { el.html(item.global.seances); },
             function (el, item) { el.html(format('### ##0,#', item.global.entrees)); },
             function (el, item) { el.html(format('### ##0,0', item.global.moyEntreesSeance)); },
-            function (el, item) { el.html(format('#0,0', item.global.tauxRemplissage * 100)); }
+            function (el, item) { el.html(format('#0,0', item.global.tauxRemplissage * 100)); },
+            function (el, item) { el.html(format('#0,0', (item.global.entreesLP / item.global.entrees) * 100)); }
           ][i](d3.select(this), item)
         });
 

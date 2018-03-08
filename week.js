@@ -59,7 +59,7 @@ toString(stream).then(function (data) {
     writeJSON(o, "weeks/" + weekName + ".json");
 
 
-    // Global séances JSON file (seances.json)
+    // Global séances JSON file (seances.json)  
     fs.readFile(config.path.local + "seances.json", function (err, data) {
       var q = (err || !data) ? [] : JSON.parse(data);
       writeJSON(
