@@ -16,15 +16,27 @@ var config = require("./modules/config.js");
 var weekName = process.argv[2];
 
 var stream = fs
-.createReadStream("./data/" + weekName + ".csv")
-.pipe(new AutoDetectDecoderStream({ defaultEncoding: "win1252" }))
-.pipe(iconv.encodeStream("utf8"))
-.pipe(new Converter({
-  delimiter: ";",
-  toArrayString: true,
-  headers: ["idCanal", "idManif", "titre", "idSeance", "date", "idSalle", "montant", "tarif"]
-}));
-
+  .createReadStream("./data/" + weekName + ".csv")
+  .pipe(new AutoDetectDecoderStream({ defaultEncoding: "win1252" }))
+  .pipe(iconv.encodeStream("utf8"))
+  .pipe(
+    new Converter({
+      delimiter: ";",
+      toArrayString: true,
+      headers: [
+        "idCanal",
+        "idManif",
+        "titre",
+        "idSeance",
+        "date",
+        "idSalle",
+        "idTicket",
+        "montant",
+        "tarif"
+      ]
+      // headers: ["idCanal", "idManif", "titre", "idSeance", "date", "idSalle", "montant", "tarif"]
+    })
+  );
 
 // Does the following with a raw weekly JSON data stream:
 // - Aggregates the ticket entries to show (seances) entries
@@ -35,33 +47,42 @@ var stream = fs
 // - Saves the output as a global JSON file (aggregate.json)
 // NOTE 2017-03-31: shows marked as excluded are removed from the computations for weekly aggregates (aggregate.json) -- they can't be reintegrated in the views
 
-toString(stream).then(function (data) {
+toString(stream).then(function(data) {
+
+  // console.log(data);
+
   var o = aggregateToSeance(JSON.parse(data));
 
-  fs.readFile(config.path.local + "static/exclude-seances.json", function (err, excludeSeances) { // TODO: use promise (with Bluebird promisify, see: http://stackoverflow.com/questions/34628305/using-promises-with-fs-readfile-in-a-loop)
+
+
+
+
+  fs.readFile(config.path.local + "static/exclude-seances.json", function(
+    err,
+    excludeSeances
+  ) {
+    // TODO: use promise (with Bluebird promisify, see: http://stackoverflow.com/questions/34628305/using-promises-with-fs-readfile-in-a-loop)
 
     // Add `exclude: true` if seanceId is in exclusion list
-    excludeSeances = JSON.parse(excludeSeances);
+    // excludeSeances = JSON.parse(excludeSeances);
+    // o = _(o)
+    //   .map(item => {
+    //     return _(excludeSeances).indexOf(item.idSeance) > -1
+    //       ? _(item)
+    //           .assign({ exclude: true })
+    //           .value()
+    //       : item;
+    //   })
+    //   .value();
 
-    o = _(o).map(item => {
-      return (
-        _(excludeSeances).indexOf(item.idSeance) > -1
-      ?
-        _(item).assign({ exclude: true }).value()
-      :
-        item
-      );
-    })
-    .value();
 
 
     // Weekly séances JSON file (eg. 2017-s1.json)
     writeJSON(o, "weeks/" + weekName + ".json");
 
-
-    // Global séances JSON file (seances.json)  
-    fs.readFile(config.path.local + "seances.json", function (err, data) {
-      var q = (err || !data) ? [] : JSON.parse(data);
+    // Global séances JSON file (seances.json)
+    fs.readFile(config.path.local + "seances.json", function(err, data) {
+      var q = err || !data ? [] : JSON.parse(data);
       writeJSON(
         _(q)
           .concat(o)
@@ -74,9 +95,12 @@ toString(stream).then(function (data) {
     });
 
     // Global aggregation by week (aggregate.json)
-    fs.readFile(config.path.local + "weeks/aggregate.json", function (err, data) {
+    fs.readFile(config.path.local + "weeks/aggregate.json", function(
+      err,
+      data
+    ) {
       var p = {};
-      var q = (err || !data) ? [] : JSON.parse(data);
+      var q = err || !data ? [] : JSON.parse(data);
 
       p[weekName] = aggregateSeances(o);
 
@@ -88,10 +112,14 @@ toString(stream).then(function (data) {
         "weeks/aggregate.json"
       );
     });
+ 
 
   });
-});
 
+
+
+
+});
 
 function writeJSON(data, name) {
   var json = JSON.stringify(data, null, 2);
@@ -103,51 +131,67 @@ function writeJSON(data, name) {
     () => {} // FIXED: DeprecationWarning: Calling an asynchronous function without callback is deprecated
   );
 
-  fs.writeFile(
-    config.path.remote + name,
-    json,
-    "utf8",
-    () => {}
-  );
+  // fs.writeFile(config.path.remote + name, json, "utf8", () => {});
 }
-
 
 // Agrégation des tickets en séances
 function aggregateToSeance(data) {
+
   return _(data)
-  .map(function (item) {
-    return _.assign({}, item, { montant: parseFloat((item.montant || "0").replace(",", ".")) }); // TODO: move this out of aggregate, make it part of a preprocess function
-  })
-  .groupBy("idSeance")
-  .map(function (items) {
-    return {
-      idSeance: items[0].idSeance,
-      idManif: items[0].idManif,
-      titre: items[0].titre,
-      date: items[0].date,
-      salle: {
-        "10551": { id: 1, code: "HL" },
-        "10789": { id: 2, code: "GF" },
-        "10783": { id: 3, code: "JE" },
-        "19238": { id: 4, code: "LE" }
-      }[items[0].idSalle],
-      tickets: {
-        compte: items.length,
-        recette: _.sumBy(items, item => item.montant),
-        tarif: _(items).groupBy("tarif").mapValues(item => item.length).value(),
-        tarifCat: _(items).reduce(function (acc, item) {
-          return _({}).assign(acc, (function (item) {
-            if (_.indexOf(config.codesTarifsLp, item.tarif) > -1) return { lp: acc.lp + 1 }; // Codes tarifaires Libre Pass
-            if (item.montant == 0) return { gratuit: acc.gratuit + 1 };
-            return { payant: acc.payant + 1 };
-          })(item))
-          .value()
-        }, { payant: 0, lp: 0, gratuit: 0 }),
-        web: _(items).filter(function (item) { return _.indexOf(config.codesTarifsWeb, item.idCanal) > -1; }).value().length // Codes canal de vente web
-      }
-    };
-  })
-  .filter(function (d) { return !_.isUndefined(d.salle); }) // Retire les items hors salle de cinéma
-  .sortBy("date")
-  .value();
+    .groupBy(d => d.idTicket) // Dédoublonnage des séances sur idTicket
+    .mapValues(d => d[0])
+    .map(function(item) {
+      return _.assign({}, item, {
+        montant: parseFloat((item.montant || "0").replace(",", "."))
+      }); // TODO: move this out of aggregate, make it part of a preprocess function
+    })
+    .groupBy("idSeance")
+    .map(function(items) {
+      return {
+        idSeance: items[0].idSeance,
+        idManif: items[0].idManif,
+        titre: items[0].titre,
+        date: items[0].date,
+        salle: {
+          "10551": { id: 1, code: "HL" },
+          "10789": { id: 2, code: "GF" },
+          "10783": { id: 3, code: "JE" },
+          "19238": { id: 4, code: "LE" }
+        }[items[0].idSalle],
+        tickets: {
+          compte: items.length,
+          recette: _.sumBy(items, item => item.montant),
+          tarif: _(items)
+            .groupBy("tarif")
+            .mapValues(item => item.length)
+            .value(),
+          tarifCat: _(items).reduce(
+            function(acc, item) {
+              return _({})
+                .assign(
+                  acc,
+                  (function(item) {
+                    if (_.indexOf(config.codesTarifsLp, item.tarif) > -1)
+                      return { lp: acc.lp + 1 }; // Codes tarifaires Libre Pass
+                    if (item.montant == 0) return { gratuit: acc.gratuit + 1 };
+                    return { payant: acc.payant + 1 };
+                  })(item)
+                )
+                .value();
+            },
+            { payant: 0, lp: 0, gratuit: 0 }
+          ),
+          web: _(items)
+            .filter(function(item) {
+              return _.indexOf(config.codesTarifsWeb, item.idCanal) > -1;
+            })
+            .value().length // Codes canal de vente web
+        }
+      };
+    })
+    .filter(function(d) {
+      return !_.isUndefined(d.salle);
+    }) // Retire les items hors salle de cinéma
+    .sortBy("date")
+    .value();
 }
