@@ -128,7 +128,8 @@ function aggregateToSeance(data) {
       salle: {
         "10551": { id: 1, code: "HL" },
         "10789": { id: 2, code: "GF" },
-        "10783": { id: 3, code: "JE" }
+        "10783": { id: 3, code: "JE" },
+        "19238": { id: 4, code: "LE" }
       }[items[0].idSalle],
       tickets: {
         compte: items.length,

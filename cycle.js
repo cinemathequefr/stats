@@ -10,8 +10,7 @@ var config = require("./modules/config.js");
 
 var idCycle = parseInt(process.argv[2], 10);
 
-var p = Promise
-.map(
+var p = Promise.map(
   [
     config.path.local + "seances.json",
     config.path.local + "static/cycle-seances.json",
@@ -23,44 +22,63 @@ var p = Promise
 );
 
 p
-.then(data => _(data).map(d => JSON.parse(d)).value())
-.then(data => {
-  var seances = data[0];
-  var cycleSeances = data[1][idCycle];
-  var cycles = data[2];
+  .then(data =>
+    _(data)
+      .map(d => JSON.parse(d))
+      .value()
+  )
+  .then(data => {
+    var seances = data[0];
+    var cycleSeances = data[1][idCycle];
+    var cycles = data[2];
 
-
-  var o = _(cycleSeances) // Extrait les items séances correspondant aux IDs de séance du cycle
-    .map(id => _(seances).filter(s => s.idSeance === id).value()[0])
-    .filter(s => !!s) // 2017-12-05 : on filtre les valeurs null provenant de séances dont l'id est présent dans cycle-seances.json mais qui ne sont pas dans seances.json (eg séances n'ayant pas eu lieu, séances à venir)
-    .sortBy("date")
-    .value();
-
-  writeJSON(o, "cycles/" + idCycle + ".json");
-
-  fs.readFile(config.path.local + "cycles/aggregate.json", function (err, data) {
-    var p = {};
-    var q = (err || !data) ? [] : JSON.parse(data);
-
-    p[idCycle] = _({}) // Informations sur le cycle (titre, dates de début et fin, durée en jours)
-      .assign(
-        aggregateSeances(o),
-        _(cycles).chain().find(c => c.idCycleSite === idCycle).pick(["title", "dateFrom", "dateTo"]).value()
+    var o = _(cycleSeances) // Extrait les items séances correspondant aux IDs de séance du cycle
+      .map(
+        id =>
+          _(seances)
+            .filter(s => s.idSeance === id)
+            .value()[0]
       )
-      .thru(c => _({}).assign(c, { "duration": moment(c.dateTo).diff(c.dateFrom, "days") + 1 }).value())
+      .filter(s => !!s) // 2017-12-05 : on filtre les valeurs null provenant de séances dont l'id est présent dans cycle-seances.json mais qui ne sont pas dans seances.json (eg séances n'ayant pas eu lieu, séances à venir)
+      .sortBy("date")
       .value();
 
-    writeJSON(
-      _(q)
-        .omit(idCycle) // Nécessaire ? Retire l'entrée de la semaine correspondant à celle qui la remplacera
-        .assign(p)
-        .value(),
-      "cycles/aggregate.json"
-    );
+    writeJSON(o, "cycles/" + idCycle + ".json");
 
+    fs.readFile(config.path.local + "cycles/aggregate.json", function(
+      err,
+      data
+    ) {
+      var p = {};
+      var q = err || !data ? [] : JSON.parse(data);
+
+      p[idCycle] = _({}) // Informations sur le cycle (titre, dates de début et fin, durée en jours)
+        .assign(
+          aggregateSeances(o),
+          _(cycles)
+            .chain()
+            .find(c => c.idCycleSite === idCycle)
+            .pick(["title", "dateFrom", "dateTo"])
+            .value()
+        )
+        .thru(c =>
+          _({})
+            .assign(c, {
+              duration: moment(c.dateTo).diff(c.dateFrom, "days") + 1
+            })
+            .value()
+        )
+        .value();
+
+      writeJSON(
+        _(q)
+          .omit(idCycle) // Nécessaire ? Retire l'entrée de la semaine correspondant à celle qui la remplacera
+          .assign(p)
+          .value(),
+        "cycles/aggregate.json"
+      );
+    });
   });
-
-});
 
 function writeJSON(data, name) {
   var json = JSON.stringify(data, null, 2);

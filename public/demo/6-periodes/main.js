@@ -68,7 +68,6 @@ var grouping = { // La première valeur est la fonction de regroupement, la seco
     function (d) {
       var  y = d.moment.year();
       return d.moment.isBefore(y + "-08-15") ? s(y - 1) : s(y);
-      // return d.moment.isBefore(moment().year(y).month(8).day(15)) ? s(y - 1) : s(y); // BUG : renvoie des séances dans la saison 2014-2015
       function s (y) { return y + "-" + (y + 1); }
     },
     _.template("<%= d %>")
