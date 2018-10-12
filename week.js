@@ -49,13 +49,7 @@ var stream = fs
 
 toString(stream).then(function(data) {
 
-  // console.log(data);
-
   var o = aggregateToSeance(JSON.parse(data));
-
-
-
-
 
   fs.readFile(config.path.local + "static/exclude-seances.json", function(
     err,
@@ -64,16 +58,16 @@ toString(stream).then(function(data) {
     // TODO: use promise (with Bluebird promisify, see: http://stackoverflow.com/questions/34628305/using-promises-with-fs-readfile-in-a-loop)
 
     // Add `exclude: true` if seanceId is in exclusion list
-    // excludeSeances = JSON.parse(excludeSeances);
-    // o = _(o)
-    //   .map(item => {
-    //     return _(excludeSeances).indexOf(item.idSeance) > -1
-    //       ? _(item)
-    //           .assign({ exclude: true })
-    //           .value()
-    //       : item;
-    //   })
-    //   .value();
+    excludeSeances = JSON.parse(excludeSeances);
+    o = _(o)
+      .map(item => {
+        return _(excludeSeances).indexOf(item.idSeance) > -1
+          ? _(item)
+              .assign({ exclude: true })
+              .value()
+          : item;
+      })
+      .value();
 
 
 
