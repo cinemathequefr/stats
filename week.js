@@ -131,7 +131,7 @@ function writeJSON(data, name) {
     () => {} // FIXED: DeprecationWarning: Calling an asynchronous function without callback is deprecated
   );
 
-  // fs.writeFile(config.path.remote + name, json, "utf8", () => {});
+  fs.writeFile(config.path.remote + name, json, "utf8", () => {});
 }
 
 // Agrégation des tickets en séances
@@ -140,6 +140,11 @@ function aggregateToSeance(data) {
   return _(data)
     .groupBy(d => d.idTicket) // Dédoublonnage des séances sur idTicket
     .mapValues(d => d[0])
+
+    .tap(d => {
+      console.log(`Dédoublonnage : avant = ${ data.length } / après = ${ _.map(d).length }`);
+    })
+
     .map(function(item) {
       return _.assign({}, item, {
         montant: parseFloat((item.montant || "0").replace(",", "."))
