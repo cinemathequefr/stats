@@ -1,226 +1,271 @@
 <!DOCTYPE html>
 <html lang="fr">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fréquentation des salles de cinéma - La Cinémathèque française</title>
-  <!--
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      Fréquentation des salles de cinéma - La Cinémathèque française
+    </title>
+    <!--
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css">
     -->
-  <link rel="stylesheet" href="css/normalize.8.0.0.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,600,600italic">
-  <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/normalize.8.0.0.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,600,600italic"
+    />
+    <link rel="stylesheet" href="css/main.css" />
 
-  <!--
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.13.1/lodash.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip.min.js"></script>
+    <!--
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.13.1/lodash.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip.min.js"></script>
     -->
-  <script src="js/vendor/libs-bundle.js"></script>
+    <script src="js/vendor/libs-bundle.js"></script>
 
-  <script src="js/vendor/ba-tiny-pubsub.min.js"></script>
-  <script src="js/vendor/format.min.js"></script>
-  <script src="js/vendor/he.js"></script>
-  <script src="js/time-chart.js"></script>
-  <script src="js/summary.js"></script>
-  <script src="js/table.js"></script>
-  <script src="js/main.js"></script>
-</head>
+    <script src="js/vendor/ba-tiny-pubsub.min.js"></script>
+    <script src="js/vendor/format.min.js"></script>
+    <script src="js/vendor/he.js"></script>
+    <script src="js/time-chart.js"></script>
+    <script src="js/summary.js"></script>
+    <script src="js/table.js"></script>
+    <script src="js/main.js"></script>
+  </head>
 
-<body>
-  <div class="container">
+  <body>
+    <div class="container">
+      <div class="nav">
+        <a href="index.html">Vue hebdomadaire</a>
+        <a href="cycles.html">Cycles</a>
+        <a href="demo/6-periodes/">Vue par période</a>
+      </div>
 
-    <div class="nav">
-      <a href="index.html">Vue hebdomadaire</a>
-      <a href="cycles.html">Cycles</a>
-      <a href="demo/6-periodes/">Vue par période</a>
-    </div>
-
-    <h1>Fréquentation des salles de cinéma : vue hebdomadaire</h1>
-    <label for="week-select">Sélectionner une semaine</label>
-    <select name="week-select">
-      <option value="2015-s36">(s36) 31 août-6 septembre 2015</option>
-      <option value="2015-s37">(s37) 7-13 septembre 2015</option>
-      <option value="2015-s38">(s38) 14-20 septembre 2015</option>
-      <option value="2015-s39">(s39) 21-27 septembre 2015</option>
-      <option value="2015-s40">(s40) 28 septembre-4 octobre 2015</option>
-      <option value="2015-s41">(s41) 5-11 octobre 2015</option>
-      <option value="2015-s42">(s42) 12-18 octobre 2015</option>
-      <option value="2015-s43">(s43) 19-25 octobre 2015</option>
-      <option value="2015-s44">(s44) 26 octobre-1 novembre 2015</option>
-      <option value="2015-s45">(s45) 2-8 novembre 2015</option>
-      <option value="2015-s46">(s46) 9-15 novembre 2015</option>
-      <option value="2015-s47">(s47) 16-22 novembre 2015</option>
-      <option value="2015-s48">(s48) 23-29 novembre 2015</option>
-      <option value="2015-s49">(s49) 30 novembre-6 décembre 2015</option>
-      <option value="2015-s50">(s50) 7-13 décembre 2015</option>
-      <option value="2015-s51">(s51) 14-20 décembre 2015</option>
-      <option value="2015-s52">(s52) 21-27 décembre 2015</option>
-      <option value="2015-s53">(s53) 28 décembre 2015-3 janvier 2016</option>
-      <option value="2016-s01">(s1) 4-10 janvier 2016</option>
-      <option value="2016-s02">(s2) 11-17 janvier 2016</option>
-      <option value="2016-s03">(s3) 18-24 janvier 2016</option>
-      <option value="2016-s04">(s4) 25-31 janvier 2016</option>
-      <option value="2016-s05">(s5) 1-7 février 2016</option>
-      <option value="2016-s06">(s6) 8-14 février 2016</option>
-      <option value="2016-s07">(s7) 15-21 février 2016</option>
-      <option value="2016-s08">(s8) 22-28 février 2016</option>
-      <option value="2016-s09">(s9) 29 février-6 mars 2016</option>
-      <option value="2016-s10">(s10) 7-13 mars 2016</option>
-      <option value="2016-s11">(s11) 14-20 mars 2016</option>
-      <option value="2016-s12">(s12) 21-27 mars 2016</option>
-      <option value="2016-s13">(s13) 28 mars-3 avril 2016</option>
-      <option value="2016-s14">(s14) 4-10 avril 2016</option>
-      <option value="2016-s15">(s15) 11-17 avril 2016</option>
-      <option value="2016-s16">(s16) 18-24 avril 2016</option>
-      <option value="2016-s17">(s17) 25 avril-1 mai 2016</option>
-      <option value="2016-s18">(s18) 2-8 mai 2016</option>
-      <option value="2016-s19">(s19) 9-15 mai 2016</option>
-      <option value="2016-s20">(s20) 16-22 mai 2016</option>
-      <option value="2016-s21">(s21) 23-29 mai 2016</option>
-      <option value="2016-s22">(s22) 30 mai-5 juin 2016</option>
-      <option value="2016-s23">(s23) 6-12 juin 2016</option>
-      <option value="2016-s24">(s24) 13-19 juin 2016</option>
-      <option value="2016-s25">(s25) 20-26 juin 2016</option>
-      <option value="2016-s26">(s26) 27 juin-3 juillet 2016</option>
-      <option value="2016-s27">(s27) 4-10 juillet 2016</option>
-      <option value="2016-s28">(s28) 11-17 juillet 2016</option>
-      <option value="2016-s29">(s29) 18-24 juillet 2016</option>
-      <option value="2016-s30">(s30) 25-31 juillet 2016</option>
-      <option disabled>──────────</option>
-      <option value="2016-s35">(s35) 29 août-4 septembre 2016</option>
-      <option value="2016-s36">(s36) 5-11 septembre 2016</option>
-      <option value="2016-s37">(s37) 12-18 septembre 2016</option>
-      <option value="2016-s38">(s38) 19-25 septembre 2016</option>
-      <option value="2016-s39">(s39) 26 septembre-2 octobre 2016</option>
-      <option value="2016-s40">(s40) 3-9 octobre 2016</option>
-      <option value="2016-s41">(s41) 10-16 octobre 2016</option>
-      <option value="2016-s42">(s42) 17-23 octobre 2016</option>
-      <option value="2016-s43">(s43) 24-30 octobre 2016</option>
-      <option value="2016-s44">(s44) 31 octobre-6 novembre 2016</option>
-      <option value="2016-s45">(s45) 7-13 novembre 2016</option>
-      <option value="2016-s46">(s46) 14-20 novembre 2016</option>
-      <option value="2016-s47">(s47) 21-27 novembre 2016</option>
-      <option value="2016-s48">(s48) 28 novembre-4 décembre 2016</option>
-      <option value="2016-s49">(s49) 5-11 décembre 2016</option>
-      <option value="2016-s50">(s50) 12-18 décembre 2016</option>
-      <option value="2016-s51">(s51) 19-25 décembre 2016</option>
-      <option value="2016-s52">(s52) 26 décembre 2016-1 janvier 2017</option>
-      <option value="2017-s1">(s1) 2-8 janvier 2017</option>
-      <option value="2017-s2">(s2) 9-15 janvier 2017</option>
-      <option value="2017-s3">(s3) 16-22 janvier 2017</option>
-      <option value="2017-s4">(s4) 22-29 janvier 2017</option>
-      <option value="2017-s5">(s5) 30 janvier-5 février 2017</option>
-      <option value="2017-s6">(s6) 6-12 février2017</option>
-      <option value="2017-s7">(s7) 13-19 février 2017</option>
-      <option value="2017-s8">(s8) 20-26 février 2017</option>
-      <option value="2017-s9">(s9) 27 février-5 mars 2017</option>
-      <option value="2017-s10">(s10) 6-12 mars 2017</option>
-      <option value="2017-s11">(s11) 13-19 mars 2017</option>
-      <option value="2017-s12">(s12) 20-26 mars 2017</option>
-      <option value="2017-s13">(s13) 27 mars-2 avril 2017</option>
-      <option value="2017-s14">(s14) 3-9 avril 2017</option>
-      <option value="2017-s15">(s15) 10-16 avril 2017</option>
-      <option value="2017-s16">(s16) 17-23 avril 2017</option>
-      <option value="2017-s17">(s17) 24-30 avril 2017</option>
-      <option value="2017-s18">(s18) 1-7 mai 2017</option>
-      <option value="2017-s19">(s19) 8-14 mai 2017</option>
-      <option value="2017-s20">(s20) 15-21 mai 2017</option>
-      <option value="2017-s21">(s21) 22-28 mai 2017</option>
-      <option value="2017-s22">(s22) 29 mai-4 juin 2017</option>
-      <option value="2017-s23">(s23) 5-11 juin 2017</option>
-      <option value="2017-s24">(s24) 12-18 juin 2017</option>
-      <option value="2017-s25">(s25) 19-25 juin 2017</option>
-      <option value="2017-s26">(s26) 26 juin-2 juillet 2017</option>
-      <option value="2017-s27">(s27) 3-9 juillet 2017</option>
-      <option value="2017-s28">(s28) 10-16 juillet 2017</option>
-      <option value="2017-s29">(s29) 17-23 juillet 2017</option>
-      <option value="2017-s30">(s30) 24-30 juillet 2017</option>
-      <option disabled>──────────</option>
-      <option value="2017-s35">(s35) 28 août-3 septembre 2017</option>
-      <option value="2017-s36">(s36) 4-10 septembre 2017</option>
-      <option value="2017-s37">(s37) 11-17 septembre 2017</option>
-      <option value="2017-s38">(s38) 18-24 septembre 2017</option>
-      <option value="2017-s39">(s39) 25 septembre-1 octobre 2017</option>
-      <option value="2017-s40">(s40) 2-8 octobre 2017</option>
-      <option value="2017-s41">(s41) 9-15 octobre 2017</option>
-      <option value="2017-s42">(s42) 16-22 octobre 2017</option>
-      <option value="2017-s43">(s43) 23-29 octobre 2017</option>
-      <option value="2017-s44">(s44) 30 octobre-5 novembre 2017</option>
-      <option value="2017-s45">(s45) 6-12 novembre 2017</option>
-      <option value="2017-s46">(s46) 13-19 novembre 2017</option>
-      <option value="2017-s47">(s47) 20-26 novembre 2017</option>
-      <option value="2017-s48">(s48) 27 novembre-3 décembre 2017</option>
-      <option value="2017-s49">(s49) 4-10 décembre 2017</option>
-      <option value="2017-s50">(s50) 11-17 décembre 2017</option>
-      <option value="2017-s51">(s51) 18-24 décembre 2017</option>
-      <option value="2017-s52">(s52) 25-31 décembre 2017</option>
-      <option value="2018-s1">(s1) 1-7 janvier 2018</option>
-      <option value="2018-s2">(s2) 8-14 janvier 2018</option>
-      <option value="2018-s3">(s3) 15-21 janvier 2018</option>
-      <option value="2018-s4">(s4) 22-28 janvier 2018</option>
-      <option value="2018-s5">(s5) 29 janvier-4 février 2018</option>
-      <option value="2018-s6">(s6) 5-11 février 2018</option>
-      <option value="2018-s7">(s7) 12-18 février 2018</option>
-      <option value="2018-s8">(s8) 19-25 février 2018</option>
-      <option value="2018-s9">(s9) 26 février-4 mars 2018</option>
-      <option value="2018-s10">(s10) 5-11 mars 2018</option>
-      <option value="2018-s11">(s11) 12-18 mars 2018</option>
-      <option value="2018-s12">(s12) 19-25 mars 2018</option>
-      <option value="2018-s13">(s13) 26 mars-1 avril 2018</option>
-      <option value="2018-s14">(s14) 2-8 avril 2018</option>
-      <option value="2018-s15">(s15) 9-15 avril 2018</option>
-      <option value="2018-s16">(s16) 16-22 avril 2018</option>
-      <option value="2018-s17">(s17) 23-29 avril 2018</option>
-      <option value="2018-s18">(s18) 30 avril-6 mai 2018</option>
-      <option value="2018-s19">(s19) 7-13 mai 2018</option>
-      <option value="2018-s20">(s20) 14-20 mai 2018</option>
-      <option value="2018-s21">(s21) 21-27 mai 2018</option>
-      <option value="2018-s22">(s22) 28 mai-3 juin 2018</option>
-      <option value="2018-s23">(s23) 4-10 juin 2018</option>
-      <option value="2018-s24">(s24) 11-17 juin 2018</option>
-      <option value="2018-s25">(s25) 18-24 juin 2018</option>
-      <option value="2018-s26">(s26) 25 juin-1 juillet 2018</option>
-      <option value="2018-s27">(s27) 2-8 juillet 2018</option>
-      <option value="2018-s28">(s28) 9-15 juillet 2018</option>
-      <option value="2018-s29">(s29) 16-22 juillet 2018</option>
-      <option value="2018-s30">(s30) 23-29 juillet 2018</option>
-      <option disabled>──────────</option>
-      <option value="2018-s35">(s35) 27 août-3 septembre 2018</option>
-      <option value="2018-s36">(s36) 3-9 septembre 2018</option>
-      <option value="2018-s37">(s37) 10-16 septembre 2018</option>
-      <option value="2018-s38">(s38) 17-23 septembre 2018</option>
-      <option value="2018-s39">(s39) 24-30 septembre 2018</option>
-      <option value="2018-s40">(s40) 1-7 octobre 2018</option>
-      <option value="2018-s41">(s41) 8-14 octobre 2018</option>
-      <option value="2018-s42">(s42) 15-21 octobre 2018</option>
-      <!--
+      <h1>Fréquentation des salles de cinéma : vue hebdomadaire</h1>
+      <label for="week-select">Sélectionner une semaine</label>
+      <select name="week-select">
+        <option value="2015-s36">(s36) 31 août-6 septembre 2015</option>
+        <option value="2015-s37">(s37) 7-13 septembre 2015</option>
+        <option value="2015-s38">(s38) 14-20 septembre 2015</option>
+        <option value="2015-s39">(s39) 21-27 septembre 2015</option>
+        <option value="2015-s40">(s40) 28 septembre-4 octobre 2015</option>
+        <option value="2015-s41">(s41) 5-11 octobre 2015</option>
+        <option value="2015-s42">(s42) 12-18 octobre 2015</option>
+        <option value="2015-s43">(s43) 19-25 octobre 2015</option>
+        <option value="2015-s44">(s44) 26 octobre-1 novembre 2015</option>
+        <option value="2015-s45">(s45) 2-8 novembre 2015</option>
+        <option value="2015-s46">(s46) 9-15 novembre 2015</option>
+        <option value="2015-s47">(s47) 16-22 novembre 2015</option>
+        <option value="2015-s48">(s48) 23-29 novembre 2015</option>
+        <option value="2015-s49">(s49) 30 novembre-6 décembre 2015</option>
+        <option value="2015-s50">(s50) 7-13 décembre 2015</option>
+        <option value="2015-s51">(s51) 14-20 décembre 2015</option>
+        <option value="2015-s52">(s52) 21-27 décembre 2015</option>
+        <option value="2015-s53">(s53) 28 décembre 2015-3 janvier 2016</option>
+        <option value="2016-s01">(s1) 4-10 janvier 2016</option>
+        <option value="2016-s02">(s2) 11-17 janvier 2016</option>
+        <option value="2016-s03">(s3) 18-24 janvier 2016</option>
+        <option value="2016-s04">(s4) 25-31 janvier 2016</option>
+        <option value="2016-s05">(s5) 1-7 février 2016</option>
+        <option value="2016-s06">(s6) 8-14 février 2016</option>
+        <option value="2016-s07">(s7) 15-21 février 2016</option>
+        <option value="2016-s08">(s8) 22-28 février 2016</option>
+        <option value="2016-s09">(s9) 29 février-6 mars 2016</option>
+        <option value="2016-s10">(s10) 7-13 mars 2016</option>
+        <option value="2016-s11">(s11) 14-20 mars 2016</option>
+        <option value="2016-s12">(s12) 21-27 mars 2016</option>
+        <option value="2016-s13">(s13) 28 mars-3 avril 2016</option>
+        <option value="2016-s14">(s14) 4-10 avril 2016</option>
+        <option value="2016-s15">(s15) 11-17 avril 2016</option>
+        <option value="2016-s16">(s16) 18-24 avril 2016</option>
+        <option value="2016-s17">(s17) 25 avril-1 mai 2016</option>
+        <option value="2016-s18">(s18) 2-8 mai 2016</option>
+        <option value="2016-s19">(s19) 9-15 mai 2016</option>
+        <option value="2016-s20">(s20) 16-22 mai 2016</option>
+        <option value="2016-s21">(s21) 23-29 mai 2016</option>
+        <option value="2016-s22">(s22) 30 mai-5 juin 2016</option>
+        <option value="2016-s23">(s23) 6-12 juin 2016</option>
+        <option value="2016-s24">(s24) 13-19 juin 2016</option>
+        <option value="2016-s25">(s25) 20-26 juin 2016</option>
+        <option value="2016-s26">(s26) 27 juin-3 juillet 2016</option>
+        <option value="2016-s27">(s27) 4-10 juillet 2016</option>
+        <option value="2016-s28">(s28) 11-17 juillet 2016</option>
+        <option value="2016-s29">(s29) 18-24 juillet 2016</option>
+        <option value="2016-s30">(s30) 25-31 juillet 2016</option>
+        <option disabled>──────────</option>
+        <option value="2016-s35">(s35) 29 août-4 septembre 2016</option>
+        <option value="2016-s36">(s36) 5-11 septembre 2016</option>
+        <option value="2016-s37">(s37) 12-18 septembre 2016</option>
+        <option value="2016-s38">(s38) 19-25 septembre 2016</option>
+        <option value="2016-s39">(s39) 26 septembre-2 octobre 2016</option>
+        <option value="2016-s40">(s40) 3-9 octobre 2016</option>
+        <option value="2016-s41">(s41) 10-16 octobre 2016</option>
+        <option value="2016-s42">(s42) 17-23 octobre 2016</option>
+        <option value="2016-s43">(s43) 24-30 octobre 2016</option>
+        <option value="2016-s44">(s44) 31 octobre-6 novembre 2016</option>
+        <option value="2016-s45">(s45) 7-13 novembre 2016</option>
+        <option value="2016-s46">(s46) 14-20 novembre 2016</option>
+        <option value="2016-s47">(s47) 21-27 novembre 2016</option>
+        <option value="2016-s48">(s48) 28 novembre-4 décembre 2016</option>
+        <option value="2016-s49">(s49) 5-11 décembre 2016</option>
+        <option value="2016-s50">(s50) 12-18 décembre 2016</option>
+        <option value="2016-s51">(s51) 19-25 décembre 2016</option>
+        <option value="2016-s52">(s52) 26 décembre 2016-1 janvier 2017</option>
+        <option value="2017-s1">(s1) 2-8 janvier 2017</option>
+        <option value="2017-s2">(s2) 9-15 janvier 2017</option>
+        <option value="2017-s3">(s3) 16-22 janvier 2017</option>
+        <option value="2017-s4">(s4) 22-29 janvier 2017</option>
+        <option value="2017-s5">(s5) 30 janvier-5 février 2017</option>
+        <option value="2017-s6">(s6) 6-12 février2017</option>
+        <option value="2017-s7">(s7) 13-19 février 2017</option>
+        <option value="2017-s8">(s8) 20-26 février 2017</option>
+        <option value="2017-s9">(s9) 27 février-5 mars 2017</option>
+        <option value="2017-s10">(s10) 6-12 mars 2017</option>
+        <option value="2017-s11">(s11) 13-19 mars 2017</option>
+        <option value="2017-s12">(s12) 20-26 mars 2017</option>
+        <option value="2017-s13">(s13) 27 mars-2 avril 2017</option>
+        <option value="2017-s14">(s14) 3-9 avril 2017</option>
+        <option value="2017-s15">(s15) 10-16 avril 2017</option>
+        <option value="2017-s16">(s16) 17-23 avril 2017</option>
+        <option value="2017-s17">(s17) 24-30 avril 2017</option>
+        <option value="2017-s18">(s18) 1-7 mai 2017</option>
+        <option value="2017-s19">(s19) 8-14 mai 2017</option>
+        <option value="2017-s20">(s20) 15-21 mai 2017</option>
+        <option value="2017-s21">(s21) 22-28 mai 2017</option>
+        <option value="2017-s22">(s22) 29 mai-4 juin 2017</option>
+        <option value="2017-s23">(s23) 5-11 juin 2017</option>
+        <option value="2017-s24">(s24) 12-18 juin 2017</option>
+        <option value="2017-s25">(s25) 19-25 juin 2017</option>
+        <option value="2017-s26">(s26) 26 juin-2 juillet 2017</option>
+        <option value="2017-s27">(s27) 3-9 juillet 2017</option>
+        <option value="2017-s28">(s28) 10-16 juillet 2017</option>
+        <option value="2017-s29">(s29) 17-23 juillet 2017</option>
+        <option value="2017-s30">(s30) 24-30 juillet 2017</option>
+        <option disabled>──────────</option>
+        <option value="2017-s35">(s35) 28 août-3 septembre 2017</option>
+        <option value="2017-s36">(s36) 4-10 septembre 2017</option>
+        <option value="2017-s37">(s37) 11-17 septembre 2017</option>
+        <option value="2017-s38">(s38) 18-24 septembre 2017</option>
+        <option value="2017-s39">(s39) 25 septembre-1 octobre 2017</option>
+        <option value="2017-s40">(s40) 2-8 octobre 2017</option>
+        <option value="2017-s41">(s41) 9-15 octobre 2017</option>
+        <option value="2017-s42">(s42) 16-22 octobre 2017</option>
+        <option value="2017-s43">(s43) 23-29 octobre 2017</option>
+        <option value="2017-s44">(s44) 30 octobre-5 novembre 2017</option>
+        <option value="2017-s45">(s45) 6-12 novembre 2017</option>
+        <option value="2017-s46">(s46) 13-19 novembre 2017</option>
+        <option value="2017-s47">(s47) 20-26 novembre 2017</option>
+        <option value="2017-s48">(s48) 27 novembre-3 décembre 2017</option>
+        <option value="2017-s49">(s49) 4-10 décembre 2017</option>
+        <option value="2017-s50">(s50) 11-17 décembre 2017</option>
+        <option value="2017-s51">(s51) 18-24 décembre 2017</option>
+        <option value="2017-s52">(s52) 25-31 décembre 2017</option>
+        <option value="2018-s1">(s1) 1-7 janvier 2018</option>
+        <option value="2018-s2">(s2) 8-14 janvier 2018</option>
+        <option value="2018-s3">(s3) 15-21 janvier 2018</option>
+        <option value="2018-s4">(s4) 22-28 janvier 2018</option>
+        <option value="2018-s5">(s5) 29 janvier-4 février 2018</option>
+        <option value="2018-s6">(s6) 5-11 février 2018</option>
+        <option value="2018-s7">(s7) 12-18 février 2018</option>
+        <option value="2018-s8">(s8) 19-25 février 2018</option>
+        <option value="2018-s9">(s9) 26 février-4 mars 2018</option>
+        <option value="2018-s10">(s10) 5-11 mars 2018</option>
+        <option value="2018-s11">(s11) 12-18 mars 2018</option>
+        <option value="2018-s12">(s12) 19-25 mars 2018</option>
+        <option value="2018-s13">(s13) 26 mars-1 avril 2018</option>
+        <option value="2018-s14">(s14) 2-8 avril 2018</option>
+        <option value="2018-s15">(s15) 9-15 avril 2018</option>
+        <option value="2018-s16">(s16) 16-22 avril 2018</option>
+        <option value="2018-s17">(s17) 23-29 avril 2018</option>
+        <option value="2018-s18">(s18) 30 avril-6 mai 2018</option>
+        <option value="2018-s19">(s19) 7-13 mai 2018</option>
+        <option value="2018-s20">(s20) 14-20 mai 2018</option>
+        <option value="2018-s21">(s21) 21-27 mai 2018</option>
+        <option value="2018-s22">(s22) 28 mai-3 juin 2018</option>
+        <option value="2018-s23">(s23) 4-10 juin 2018</option>
+        <option value="2018-s24">(s24) 11-17 juin 2018</option>
+        <option value="2018-s25">(s25) 18-24 juin 2018</option>
+        <option value="2018-s26">(s26) 25 juin-1 juillet 2018</option>
+        <option value="2018-s27">(s27) 2-8 juillet 2018</option>
+        <option value="2018-s28">(s28) 9-15 juillet 2018</option>
+        <option value="2018-s29">(s29) 16-22 juillet 2018</option>
+        <option value="2018-s30">(s30) 23-29 juillet 2018</option>
+        <option disabled>──────────</option>
+        <option value="2018-s35">(s35) 27 août-3 septembre 2018</option>
+        <option value="2018-s36">(s36) 3-9 septembre 2018</option>
+        <option value="2018-s37">(s37) 10-16 septembre 2018</option>
+        <option value="2018-s38">(s38) 17-23 septembre 2018</option>
+        <option value="2018-s39">(s39) 24-30 septembre 2018</option>
+        <option value="2018-s40">(s40) 1-7 octobre 2018</option>
+        <option value="2018-s41">(s41) 8-14 octobre 2018</option>
+        <option value="2018-s42">(s42) 15-21 octobre 2018</option>
         <option value="2018-s43">(s43) 22-28 octobre 2018</option>
         <option value="2018-s44">(s44) 29 octobre-4 novembre 2018</option>
         <option value="2018-s45">(s45) 5-11 novembre 2018</option>
         <option value="2018-s46">(s46) 12-18 novembre 2018</option>
         <option value="2018-s47">(s47) 19-25 novembre 2018</option>
         <option value="2018-s48">(s48) 26 novembre-2 décembre 2018</option>
-        -->
-    </select>
-    <h2>Détail des séances</h2>
-    <div id="seances"></div>
-    <svg class="legend" width="230" height="20" viewBox="0 0 200 20">
-      <rect x="0" y="8" width="30" height="5" fill="#039" />
-      <text x="32" y="14" fill="#039" text-anchor="start" font-size="12px" font-weight="600">Recette</text>
-      <rect x="75" y="0" width="30" height="18" fill="#c66" />
-      <text x="107" y="14" fill="#933" text-anchor="start" font-size="12px" font-weight="600">Entrées</text>
-      <rect x="150" y="0" width="30" height="18" fill="#ccc" />
-      <text x="182" y="14" fill="#999" text-anchor="start" font-size="12px" font-weight="600">Jauge</text>
-    </svg>
-    <h2>Synthèse</h2>
-    <div class="timeChart"></div>
-    <div id="summary"></div>
-  </div>
-</body>
-
+        <option value="2018-s49">(s49) 3-9 décembre 2018</option>
+        <option value="2018-s50">(s50) 10-16 décembre 2018</option>
+        <option value="2018-s51">(s51) 17-23 décembre 2018</option>
+        <option value="2018-s52">(s52) 24-30 décembre 2018</option>
+        <option value="2018-s53">(s53) 31 décembre 2018-6 janvier 2019</option>
+        <option value="2019-s1">(s1) 7-13 janvier 2019</option>
+        <option value="2019-s2">(s2) 14-20 janvier 2019</option>
+        <option value="2019-s3">(s3) 21-27 janvier 2019</option>
+        <option value="2019-s4">(s4) 28 janvier-3 février 2019</option>
+        <option value="2019-s5">(s5) 4-10 février 2019</option>
+        <option value="2019-s6">(s6) 11-17 février 2019</option>
+        <option value="2019-s7">(s7) 18-24 février 2019</option>
+        <option value="2019-s8">(s8) 25 février-3 mars 2019</option>
+        <option value="2019-s9">(s9) 4-10 mars 2019</option>
+        <option value="2019-s10">(s10) 11-17 mars 2019</option>
+        <option value="2019-s11">(s11) 18-24 mars 2019</option>
+        <option value="2019-s12">(s12) 25-31 mars 2019</option>
+        <option value="2019-s13">(s13) 1-7 avril 2019</option>
+      </select>
+      <h2>Détail des séances</h2>
+      <div id="seances"></div>
+      <svg class="legend" width="230" height="20" viewBox="0 0 200 20">
+        <rect x="0" y="8" width="30" height="5" fill="#039" />
+        <text
+          x="32"
+          y="14"
+          fill="#039"
+          text-anchor="start"
+          font-size="12px"
+          font-weight="600"
+        >
+          Recette
+        </text>
+        <rect x="75" y="0" width="30" height="18" fill="#c66" />
+        <text
+          x="107"
+          y="14"
+          fill="#933"
+          text-anchor="start"
+          font-size="12px"
+          font-weight="600"
+        >
+          Entrées
+        </text>
+        <rect x="150" y="0" width="30" height="18" fill="#ccc" />
+        <text
+          x="182"
+          y="14"
+          fill="#999"
+          text-anchor="start"
+          font-size="12px"
+          font-weight="600"
+        >
+          Jauge
+        </text>
+      </svg>
+      <h2>Synthèse</h2>
+      <div class="timeChart"></div>
+      <div id="summary"></div>
+    </div>
+  </body>
 </html>
